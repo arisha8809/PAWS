@@ -18,7 +18,7 @@ def index():
 @app.route('/register_dog', methods=['POST'])
 def register_dog():
     if request.method == 'POST':
-        dog_data = {
+        dog_data = {~
             'name': request.form.get('name'),
             'breed': request.form.get('breed'),
             'age': request.form.get('age'),
