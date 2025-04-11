@@ -1,0 +1,74 @@
+/* Navigation Animation Styles */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  width: 40px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.nav-toggle span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: var(--accent-orange-gradient);
+  border-radius: 3px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: var(--transition);
+}
+
+.nav-toggle span:nth-child(1) {
+  top: 0px;
+}
+
+.nav-toggle span:nth-child(2) {
+  top: 12px;
+}
+
+.nav-toggle span:nth-child(3) {
+  top: 24px;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  top: 12px;
+  transform: rotate(135deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+  right: -60px;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  top: 12px;
+  transform: rotate(-135deg);
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  nav ul.active {
+    animation: slideDown 0.3s ease-in-out forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: auto;
+      opacity: 1;
+      padding: 1rem 0;
+    }
+  }
+}
+

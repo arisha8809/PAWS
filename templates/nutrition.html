@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block title %}Dog Nutrition Guide - PAWS{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Nutrition Guide</h1>
+    <p>Discover the best diet plans and food recommendations for your dog</p>
+</div>
+
+<section class="content-section">
+    <h2>Nutrition Basics</h2>
+    <div class="nutrition-grid">
+        <div class="nutrition-card">
+            <h3>Proteins</h3>
+            <p>Essential for muscle development and repair. Learn about quality protein sources for your dog.</p>
+            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="nutrition-card">
+            <h3>Fats</h3>
+            <p>Provides energy and supports cell growth. Discover healthy fat sources for your dog's diet.</p>
+            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="nutrition-card">
+            <h3>Carbohydrates</h3>
+            <p>Supplies energy and supports digestive health. Find out which carbs are best for dogs.</p>
+            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="nutrition-card">
+            <h3>Vitamins & Minerals</h3>
+            <p>Essential for overall health and immune function. Learn about key micronutrients.</p>
+            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
+        </div>
+    </div>
+</section>
+
+<div class="paw-divider">
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+</div>
+
+<section class="content-section">
+    <h2>Feeding Guides</h2>
+    <div class="feeding-calculator">
+        <h3>Portion Calculator</h3>
+        <p>Find out how much to feed your dog based on their weight, age, and activity level.</p>
+        <form class="calculator-form">
+            <div class="form-group">
+                <label for="dogWeight">Dog's Weight (lbs)</label>
+                <input type="number" id="dogWeight" class="animated-input" required>
+            </div>
+            <div class="form-group">
+                <label for="dogAge">Dog's Age</label>
+                <select id="dogAge" class="animated-input" required>
+                    <option value="">Select Age</option>
+                    <option value="puppy">Puppy (under 1 year)</option>
+                    <option value="adult">Adult (1-7 years)</option>
+                    <option value="senior">Senior (8+ years)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="activityLevel">Activity Level</label>
+                <select id="activityLevel" class="animated-input" required>
+                    <option value="">Select Activity Level</option>
+                    <option value="low">Low (mostly inactive)</option>
+                    <option value="moderate">Moderate (daily walks)</option>
+                    <option value="high">High (very active)</option>
+                </select>
+            </div>
+            <button type="submit" class="paw-button">Calculate <span class="paw-icon">🐾</span></button>
+        </form>
+        <div id="calculationResult" class="calculation-result"></div>
+    </div>
+</section>
+
+<div class="paw-divider">
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+</div>
+
+<section class="content-section">
+    <h2>Special Diets</h2>
+    <div class="special-diets-grid">
+        <div class="diet-card">
+            <h3>Grain-Free</h3>
+            <p>Learn about grain-free diets, their benefits, and potential concerns.</p>
+            <a href="#" class="paw-button">Read More <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="diet-card">
+            <h3>Raw Food</h3>
+            <p>Discover the pros and cons of raw food diets and how to safely implement them.</p>
+            <a href="#" class="paw-button">Read More <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="diet-card">
+            <h3>Prescription Diets</h3>
+            <p>Information on specialized diets for dogs with health conditions.</p>
+            <a href="#" class="paw-button">Read More <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="diet-card">
+            <h3>Homemade Meals</h3>
+            <p>Guidelines for preparing balanced homemade meals for your dog.</p>
+            <a href="#" class="paw-button">Read More <span class="paw-icon">🐾</span></a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        text-align: center;
+        padding: 3rem 1rem;
+        background-color: var(--secondary-bg);
+        margin-bottom: 2rem;
+        border-radius: var(--border-radius);
+    }
+    
+    .nutrition-grid, .special-diets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+    
+    .nutrition-card, .diet-card {
+        background-color: var(--secondary-bg);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 5px 15px var(--shadow);
+        transition: var(--transition);
+    }
+    
+    .nutrition-card:hover, .diet-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px var(--shadow);
+    }
+    
+    .feeding-calculator {
+        background-color: var(--secondary-bg);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        margin: 2rem 0;
+    }
+    
+    .calculator-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .calculator-form button {
+        grid-column: 1 / -1;
+        width: max-content;
+        justify-self: center;
+    }
+    
+    .calculation-result {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: rgba(92, 184, 255, 0.1);
+        border-radius: var(--border-radius);
+        display: none;
+    }
+    
+    .calculation-result.show {
+        display: block;
+    }
+    
+    @media (max-width: 768px) {
+        .nutrition-grid, .special-diets-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .calculator-form {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const calculatorForm = document.querySelector('.calculator-form');
+        const calculationResult = document.getElementById('calculationResult');
+        
+        if (calculatorForm) {
+            calculatorForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const weight = parseFloat(document.getElementById('dogWeight').value);
+                const age = document.getElementById('dogAge').value;
+                const activity = document.getElementById('activityLevel').value;
+                
+                let baseAmount = 0;
+                
+                // Simple calculation logic
+                if (age === 'puppy') {
+                    baseAmount = weight * 0.05; // 5% of body weight for puppies
+                } else if (age === 'adult') {
+                    baseAmount = weight * 0.025; // 2.5% for adults
+                } else if (age === 'senior') {
+                    baseAmount = weight * 0.02; // 2% for seniors
+                }
+                
+                // Adjust for activity level
+                if (activity === 'low') {
+                    baseAmount *= 0.8;
+                } else if (activity === 'high') {
+                    baseAmount *= 1.2;
+                }
+                
+                // Round to 1 decimal place
+                baseAmount = Math.round(baseAmount * 10) / 10;
+                
+                // Display result
+                calculationResult.innerHTML = `
+                    <h4>Recommended Daily Feeding Amount</h4>
+                    <p>Your dog should eat approximately <strong>${baseAmount} cups</strong> of dry food per day.</p>
+                    <p>This can be divided into 2-3 meals throughout the day.</p>
+                    <p><em>Note: This is a general guideline. Consult with your veterinarian for personalized recommendations.</em></p>
+                `;
+                
+                calculationResult.classList.add('show');
+            });
+        }
+    });
+</script>
+{% endblock %}
+

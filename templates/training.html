@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+
+{% block title %}Dog Training - PAWS{% endblock %}
+
+{% block content %}
+<div class="page-header" style="background-image: url('{{ url_for('static', filename='images/training-header.jpg') }}')">
+    <div class="container">
+        <h1>Dog Training</h1>
+        <p>Professional training tips and resources for your furry friend</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Basic Commands</h2>
+        </div>
+        <div class="training-grid">
+            <div class="training-card">
+                <div class="training-icon">🐕</div>
+                <h3>Sit</h3>
+                <p>The foundation of all dog training. Learn how to teach your dog to sit on command.</p>
+                <button class="paw-button">Watch Tutorial <span class="paw-icon">🐾</span></button>
+            </div>
+            <div class="training-card">
+                <div class="training-icon">🐩</div>
+                <h3>Stay</h3>
+                <p>Teach your dog to remain in place until released, an essential safety command.</p>
+                <button class="paw-button blue">Watch Tutorial <span class="paw-icon">🐾</span></button>
+            </div>
+            <div class="training-card">
+                <div class="training-icon">🦮</div>
+                <h3>Come</h3>
+                <p>The recall command could save your dog's life. Learn how to make it reliable.</p>
+                <button class="paw-button purple">Watch Tutorial <span class="paw-icon">🐾</span></button>
+            </div>
+            <div class="training-card">
+                <div class="training-icon">🐕‍🦺</div>
+                <h3>Down</h3>
+                <p>Teach your dog to lie down on command, perfect for calming excited pups.</p>
+                <button class="paw-button green">Watch Tutorial <span class="paw-icon">🐾</span></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section resources-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Training Resources</h2>
+        </div>
+        <div class="resources-list">
+            <div class="resource-item">
+                <div class="resource-icon">📚</div>
+                <div class="resource-content">
+                    <h3>Positive Reinforcement Guide</h3>
+                    <p>Learn how to use rewards effectively to train your dog without punishment.</p>
+                    <a href="#" class="paw-button">Download Guide <span class="paw-icon">🐾</span></a>
+                </div>
+            </div>
+            <div class="resource-item">
+                <div class="resource-icon">📅</div>
+                <div class="resource-content">
+                    <h3>Puppy Training Schedule</h3>
+                    <p>A week-by-week guide to training your new puppy from 8 weeks to 6 months.</p>
+                    <a href="#" class="paw-button blue">Download Schedule <span class="paw-icon">🐾</span></a>
+                </div>
+            </div>
+            <div class="resource-item">
+                <div class="resource-icon">🔍</div>
+                <div class="resource-content">
+                    <h3>Problem Behavior Solutions</h3>
+                    <p>Address common issues like jumping, barking, and leash pulling with these techniques.</p>
+                    <a href="#" class="paw-button purple">View Solutions <span class="paw-icon">🐾</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section trainer-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Find a Trainer</h2>
+        </div>
+        <div class="trainer-search">
+            <p>Connect with certified professional dog trainers in your area.</p>
+            <form class="search-form">
+                <input type="text" placeholder="Enter your zip code" class="animated-input">
+                <button type="  placeholder="Enter your zip code" class="animated-input">
+                <button type="submit" class="paw-button">Search <span class="paw-icon">🐾</span></button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 100px 0;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+    
+    .page-header:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+    }
+    
+    .page-header .container {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .page-header h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: white;
+    }
+    
+    .page-header p {
+        font-size: 1.5rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .training-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+    
+    .training-card {
+        background-color: var(--secondary-bg);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        text-align: center;
+    }
+    
+    .training-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .training-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .resources-section {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .resources-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .resource-item {
+        display: flex;
+        background-color: var(--secondary-bg);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+    }
+    
+    .resource-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .resource-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        padding: 2rem;
+        background-color: var(--primary-bg);
+        min-width: 100px;
+    }
+    
+    .resource-content {
+        padding: 2rem;
+        flex-grow: 1;
+    }
+    
+    .trainer-section {
+        background-color: var(--secondary-bg);
+        border-radius: var(--border-radius);
+        margin: 4rem auto;
+        max-width: 1000px;
+    }
+    
+    .trainer-search {
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .search-form {
+        display: flex;
+        max-width: 500px;
+        margin: 1.5rem auto;
+        gap: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+        .page-header {
+            padding: 60px 0;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+        }
+        
+        .resource-item {
+            flex-direction: column;
+        }
+        
+        .resource-icon {
+            min-width: auto;
+            padding: 1.5rem;
+        }
+        
+        .search-form {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate elements on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.training-card, .resource-item');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                
+                // Check if element is in viewport
+                if(position.top < window.innerHeight && position.bottom >= 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial styles
+        const elements = document.querySelectorAll('.training-card, .resource-item');
+        elements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Run once on page load
+        animateOnScroll();
+    });
+</script>
+{% endblock %}
+

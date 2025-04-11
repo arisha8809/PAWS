@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+
+{% block title %}Dog Community - PAWS{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Community Connect</h1>
+    <p>Join a vibrant community of dog lovers and participate in local events</p>
+</div>
+
+<section class="content-section">
+    <h2>Upcoming Events</h2>
+    <div class="events-grid">
+        <div class="event-card">
+            <div class="event-date">
+                <span class="month">JUN</span>
+                <span class="day">15</span>
+            </div>
+            <div class="event-details">
+                <h3>Bark in the Park</h3>
+                <p class="event-location">Central Park, 10:00 AM - 2:00 PM</p>
+                <p>Join us for a fun day at the park with games, treats, and socialization for dogs of all sizes.</p>
+                <button class="paw-button">RSVP <span class="paw-icon">🐾</span></button>
+            </div>
+        </div>
+        <div class="event-card">
+            <div class="event-date">
+                <span class="month">JUL</span>
+                <span class="day">08</span>
+            </div>
+            <div class="event-details">
+                <h3>Puppy Training Workshop</h3>
+                <p class="event-location">Community Center, 6:00 PM - 8:00 PM</p>
+                <p>Learn essential training techniques for puppies under 6 months old.</p>
+                <button class="paw-button">RSVP <span class="paw-icon">🐾</span></button>
+            </div>
+        </div>
+        <div class="event-card">
+            <div class="event-date">
+                <span class="month">AUG</span>
+                <span class="day">22</span>
+            </div>
+            <div class="event-details">
+                <h3>Dog-Friendly Hike</h3>
+                <p class="event-location">Mountain Trail, 9:00 AM - 12:00 PM</p>
+                <p>Explore beautiful trails with your furry friend on this guided group hike.</p>
+                <button class="paw-button">RSVP <span class="paw-icon">🐾</span></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="paw-divider">
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+</div>
+
+<section class="content-section">
+    <h2>Discussion Forums</h2>
+    <div class="forums-grid">
+        <div class="forum-card">
+            <h3>Training Tips</h3>
+            <p>Share and discover effective training techniques for dogs of all ages.</p>
+            <p class="forum-stats">1,245 members • 87 topics</p>
+            <a href="#" class="paw-button">Join Forum <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="forum-card">
+            <h3>Health & Wellness</h3>
+            <p>Discuss health concerns, preventative care, and wellness tips for your dog.</p>
+            <p class="forum-stats">982 members • 103 topics</p>
+            <a href="#" class="paw-button">Join Forum <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="forum-card">
+            <h3>Breed Specific</h3>
+            <p>Connect with owners of the same breed to share experiences and advice.</p>
+            <p class="forum-stats">1,567 members • 215 topics</p>
+            <a href="#" class="paw-button">Join Forum <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="forum-card">
+            <h3>Rescue & Adoption</h3>
+            <p>Support for those who have adopted or are looking to adopt a rescue dog.</p>
+            <p class="forum-stats">843 members • 76 topics</p>
+            <a href="#" class="paw-button">Join Forum <span class="paw-icon">🐾</span></a>
+        </div>
+    </div>
+</section>
+
+<div class="paw-divider">
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+    <div class="paw-print"></div>
+</div>
+
+<section class="content-section">
+    <h2>Find Dog Friends Nearby</h2>
+    <div class="friend-finder">
+        <p>Connect with other dog owners in your area for playdates and socialization.</p>
+        <form class="search-form">
+            <input type="text" placeholder="Enter your zip code" class="animated-input">
+            <select class="animated-input">
+                <option value="">Dog Size</option>
+                <option value="small">Small (0-20 lbs)</option>
+                <option value="medium">Medium (21-50 lbs)</option>
+                <option value="large">Large (51-90 lbs)</option>
+                <option value="xlarge">X-Large (91+ lbs)</option>
+            </select>
+            <button type="submit" class="paw-button">Find Friends <span class="paw-icon">🐾</span></button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        text-align: center;
+        padding: 3rem 1rem;
+        background-color: var(--secondary-bg);
+        margin-bottom: 2rem;
+        border-radius: var(--border-radius);
+    }
+    
+    .events-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .event-card {
+        display: flex;
+        background-color: var(--secondary-bg);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 5px 15px var(--shadow);
+        transition: var(--transition);
+    }
+    
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px var(--shadow);
+    }
+    
+    .event-date {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+        background-color: var(--accent-orange);
+        color: white;
+        min-width: 100px;
+    }
+    
+    .month {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+    
+    .day {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    
+    .event-details {
+        padding: 1.5rem;
+        flex: 1;
+    }
+    
+    .event-location {
+        color: var(--secondary-text);
+        margin-bottom: 1rem;
+    }
+    
+    .forums-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+    
+    .forum-card {
+        background-color: var(--secondary-bg);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 5px 15px var(--shadow);
+        transition: var(--transition);
+    }
+    
+    .forum-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px var(--shadow);
+    }
+    
+    .forum-stats {
+        color: var(--secondary-text);
+        font-size: 0.9rem;
+        margin: 1rem 0;
+    }
+    
+    .friend-finder {
+        background-color: var(--secondary-bg);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        text-align: center;
+        margin: 2rem 0;
+    }
+    
+    .search-form {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 700px;
+        margin: 1.5rem auto;
+        gap: 1rem;
+    }
+    
+    .search-form .animated-input {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    @media (max-width: 768px) {
+        .event-card {
+            flex-direction: column;
+        }
+        
+        .event-date {
+            flex-direction: row;
+            padding: 1rem;
+        }
+        
+        .month {
+            margin-right: 0.5rem;
+        }
+        
+        .forums-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .search-form {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+

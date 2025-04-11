@@ -1,0 +1,13 @@
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M30 20C30 14.4772 34.4772 10 40 10H160C165.523 10 170 14.4772 170 20V60C170 65.5228 165.523 70 160 70H40C34.4772 70 30 65.5228 30 60V20Z" fill="#F9FF8C"/>
+  <path d="M50 50C55.5228 50 60 45.5228 60 40C60 34.4772 55.5228 30 50 30C44.4772 30 40 34.4772 40 40C40 45.5228 44.4772 50 50 50Z" fill="#FF9D5C"/>
+  <path d="M65 25L75 45H55L65 25Z" fill="#5CB8FF"/>
+  <path d="M85 30H105V50H85V30Z" fill="#A67C52"/>
+  <path d="M115 30C115 25.5817 118.582 22 123 22C127.418 22 131 25.5817 131 30V50H115V30Z" fill="#FF9D5C"/>
+  <path d="M141 30C141 25.5817 144.582 22 149 22C153.418 22 157 25.5817 157 30V50H141V30Z" fill="#5CB8FF"/>
+  <path d="M170 40L160 30V50L170 40Z" fill="#A67C52"/>
+  <text x="70" y="45" font-family="Arial" font-size="24" font-weight="bold" fill="#333333">PAWS</text>
+  <circle cx="40" cy="60" r="5" fill="#333333"/>
+  <circle cx="50" cy="60" r="5" fill="#333333"/>
+</svg>
+

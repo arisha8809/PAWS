@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block title %}PAWS - Your Dog's Best Friend{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <img src="{{ url_for('static', filename='images/hero-dogs.jpeg') }}" alt="Happy dogs playing" class="hero-background">
+    <div class="hero-content">
+        <h1>Welcome to <span class="highlight">PAWS</span></h1>
+        <p>Your comprehensive platform for all things dog-related!</p>
+        <button class="paw-button" id="getStartedBtn">Get Started <span class="paw-icon">🐾</span></button>
+    </div>
+</section>
+
+<section id="dogProfileSection" class="dog-profile-section">
+    <div class="form-title">
+        <h2>Create Your Dog's Profile</h2>
+        <p>Tell us about your furry friend so we can provide personalized recommendations</p>
+    </div>
+    <div class="form-container">
+        <form id="dogProfileForm" class="animated-form">
+            <div class="form-group">
+                <label for="dogName">Dog's Name</label>
+                <input type="text" id="dogName" name="name" class="animated-input" required>
+                <span class="input-animation"></span>
+            </div>
+            <div class="form-group">
+                <label for="dogBreed">Breed</label>
+                <input type="text" id="dogBreed" name="breed" class="animated-input" required>
+                <span class="input-animation"></span>
+            </div>
+            <div class="form-group">
+                <label for="dogAge">Age</label>
+                <input type="number" id="dogAge" name="age" class="animated-input" required>
+                <span class="input-animation"></span>
+            </div>
+            <div class="form-group">
+                <label for="dogCharacteristics">Special Characteristics</label>
+                <textarea id="dogCharacteristics" name="characteristics" class="animated-input"></textarea>
+                <span class="input-animation"></span>
+            </div>
+            <button type="submit" class="paw-button">Register <span class="paw-icon">🐾</span></button>
+        </form>
+        <div id="formResponse" class="form-response"></div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <h2>Our Services</h2>
+    </div>
+    <div class="features-container">
+        <div class="feature-card">
+            <div class="feature-image">
+                <img src="{{ url_for('static', filename='images/dog-training.jpg') }}" alt="Dog Training">
+            </div>
+            <div class="feature-content">
+                <h3>Dog Training</h3>
+                <p>Access professional training tips, video tutorials, and personalized training plans for your furry friend.</p>
+                <a href="{{ url_for('training') }}" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-image">
+                <img src="{{ url_for('static', filename='images/dog-nutrition.jpg') }}" alt="Dog Nutrition">
+            </div>
+            <div class="feature-content">
+                <h3>Nutrition Guide</h3>
+                <p>Discover the best diet plans, food recommendations, and nutritional advice tailored to your dog's needs.</p>
+                <a href="{{ url_for('nutrition') }}" class="paw-button blue">Explore <span class="paw-icon">🐾</span></a>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-image">
+                <img src="{{ url_for('static', filename='images/dog-community.jpg') }}" alt="Dog Community">
+            </div>
+            <div class="feature-content">
+                <h3>Community Connect</h3>
+                <p>Join a vibrant community of dog lovers, share experiences, and participate in local events.</p>
+                <a href="{{ url_for('community') }}" class="paw-button purple">Join Now <span class="paw-icon">🐾</span></a>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-image">
+                <img src="{{ url_for('static', filename='images/dog-walking.jpg') }}" alt="Dog Walking">
+            </div>
+            <div class="feature-content">
+                <h3>Dog Walking Services</h3>
+                <p>Find reliable dog walkers in your area, schedule walks, and track your dog's activity.</p>
+                <a href="{{ url_for('walking') }}" class="paw-button green">Find Walkers <span class="paw-icon">🐾</span></a>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-image">
+                <img src="{{ url_for('static', filename='images/dog-enrichment.jpg') }}" alt="Dog Enrichment">
+            </div>
+            <div class="feature-content">
+                <h3>Enrichment Activities</h3>
+                <p>Discover fun games, toys, and activities to keep your dog mentally stimulated and happy.</p>
+                <a href="{{ url_for('enrichment') }}" class="paw-button">Discover Activities <span class="paw-icon">🐾</span></a>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-image">
+                <img src="{{ url_for('static', filename='images/dog-health.jpg') }}" alt="Dog Health">
+            </div>
+            <div class="feature-content">
+                <h3>Health & Wellness</h3>
+                <p>Keep track of your dog's health records, find veterinarians, and get advice on common health issues.</p>
+                <a href="#" class="paw-button blue">Learn More <span class="paw-icon">🐾</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <div class="section-title">
+        <h2>Happy Dog Parents</h2>
+    </div>
+    <div class="testimonials-container">
+        <div class="testimonial-card">
+            <div class="testimonial-content">
+                <p class="testimonial-text">"PAWS has been a game-changer for me and my Golden Retriever, Max. The training resources helped us overcome his leash-pulling habit, and the community events have been a great way to socialize him!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-image">
+                        <img src="{{ url_for('static', filename='images/testimonial-1.jpg') }}" alt="Sarah Johnson">
+                    </div>
+                    <div class="testimonial-author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Owner of Max, Golden Retriever</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-card">
+            <div class="testimonial-content">
+                <p class="testimonial-text">"I was struggling to find the right nutrition plan for my senior Labrador with dietary restrictions. The personalized recommendations from PAWS made all the difference. His energy levels have improved dramatically!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-image">
+                        <img src="{{ url_for('static', filename='images/testimonial-2.jpg') }}" alt="Michael Chen">
+                    </div>
+                    <div class="testimonial-author-info">
+                        <h4>Michael Chen</h4>
+                        <p>Owner of Bruno, Labrador Retriever</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-card">
+            <div class="testimonial-content">
+                <p class="testimonial-text">"As a first-time dog parent, I was overwhelmed with all the information out there. PAWS simplified everything and guided me through the process. The dog walking service has been a lifesaver during my busy work days!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-image">
+                        <img src="{{ url_for('static', filename='images/testimonial-3.jpg') }}" alt="Emily Rodriguez">
+                    </div>
+                    <div class="testimonial-author-info">
+                        <h4>Emily Rodriguez</h4>
+                        <p>Owner of Luna, Border Collie Mix</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-container">
+        <h2>Join Our Pack Today!</h2>
+        <p>Start your journey to becoming the best dog parent you can be.</p>
+        <div class="cta-buttons">
+            <button class="paw-button" id="ctaGetStartedBtn">Get Started <span class="paw-icon">🐾</span></button>
+            <a href="{{ url_for('community') }}" class="paw-button purple">Join Community <span class="paw-icon">🐾</span></a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dog-profile.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get Started button scroll
+        const getStartedBtn = document.getElementById("getStartedBtn");
+        const ctaGetStartedBtn = document.getElementById("ctaGetStartedBtn");
+        const dogProfileSection = document.getElementById("dogProfileSection");
+        
+        if (getStartedBtn && dogProfileSection) {
+            getStartedBtn.addEventListener("click", function() {
+                dogProfileSection.scrollIntoView({ behavior: "smooth" });
+            });
+        }
+        
+        if (ctaGetStartedBtn && dogProfileSection) {
+            ctaGetStartedBtn.addEventListener("click", function() {
+                dogProfileSection.scrollIntoView({ behavior: "smooth" });
+            });
+        }
+        
+        // Animate elements on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.feature-card, .testimonial-card');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                
+                // Check if element is in viewport
+                if(position.top < window.innerHeight && position.bottom >= 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial styles
+        const elements = document.querySelectorAll('.feature-card, .testimonial-card');
+        elements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Run once on page load
+        animateOnScroll();
+    });
+</script>
+{% endblock %}
+
