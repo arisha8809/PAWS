@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Profile - PAWS{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>Hi, {{ username }} 🐾</h2>
+    <h3>Your Dogs:</h3>
+    {% if dogs %}
+        <ul class="dog-list">
+            {% for dog in dogs %}
+                <li class="dog-card">
+                    <h4>{{ dog.name }}</h4>
+                    <p><strong>Breed:</strong> {{ dog.breed }}</p>
+                    <p><strong>Age:</strong> {{ dog.age }}</p>
+                    <p><strong>Traits:</strong> {{ dog.characteristics }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No dogs added yet. 🐶</p>
+    {% endif %}
+</div>
+{% endblock %}

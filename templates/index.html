@@ -4,47 +4,44 @@
 
 {% block content %}
 <section class="hero-section">
-    <img src="{{ url_for('static', filename='images/hero-dogs.jpeg') }}" alt="Happy dogs playing" class="hero-background">
-    <div class="hero-content">
-        <h1>Welcome to <span class="highlight">PAWS</span></h1>
-        <p>Your comprehensive platform for all things dog-related!</p>
-        <button class="paw-button" id="getStartedBtn">Get Started <span class="paw-icon">🐾</span></button>
-    </div>
+    <img src="{{ url_for('static', filename='images/dog.gif') }}" alt="Happy dogs playing" class="hero-background">
 </section>
 
-<section id="dogProfileSection" class="dog-profile-section">
-    <div class="form-title">
-        <h2>Create Your Dog's Profile</h2>
-        <p>Tell us about your furry friend so we can provide personalized recommendations</p>
+<div id="dogProfileModal" class="modal-overlay">
+    <div class="modal-content dog-profile-modal">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <div class="form-title">
+            <h2>Create Your Dog's Profile</h2>
+            <p>Tell us about your furry friend so we can provide personalized recommendations</p>
+        </div>
+        <div class="form-container">
+            <form id="dogProfileForm" class="animated-form dog-registration-form">
+                <div class="form-group">
+                    <label for="dogName">Dog's Name</label>
+                    <input type="text" id="dogName" name="name" class="animated-input" required>
+                    <span class="input-animation"></span>
+                </div>
+                <div class="form-group">
+                    <label for="dogBreed">Breed</label>
+                    <input type="text" id="dogBreed" name="breed" class="animated-input" required>
+                    <span class="input-animation"></span>
+                </div>
+                <div class="form-group">
+                    <label for="dogAge">Age</label>
+                    <input type="number" id="dogAge" name="age" class="animated-input" required>
+                    <span class="input-animation"></span>
+                </div>
+                <div class="form-group">
+                    <label for="dogCharacteristics">Special Characteristics</label>
+                    <input type="text" id="dogCharacteristics" name="characteristics" class="animated-input">
+                    <span class="input-animation"></span>
+                </div>
+                <button type="submit" class="paw-button dog-profile-button">Register <span class="paw-icon">🐾</span></button>
+            </form>
+            <div id="formResponse" class="form-response"></div>
+        </div>
     </div>
-    <div class="form-container">
-        <form id="dogProfileForm" class="animated-form">
-            <div class="form-group">
-                <label for="dogName">Dog's Name</label>
-                <input type="text" id="dogName" name="name" class="animated-input" required>
-                <span class="input-animation"></span>
-            </div>
-            <div class="form-group">
-                <label for="dogBreed">Breed</label>
-                <input type="text" id="dogBreed" name="breed" class="animated-input" required>
-                <span class="input-animation"></span>
-            </div>
-            <div class="form-group">
-                <label for="dogAge">Age</label>
-                <input type="number" id="dogAge" name="age" class="animated-input" required>
-                <span class="input-animation"></span>
-            </div>
-            <div class="form-group">
-                <label for="dogCharacteristics">Special Characteristics</label>
-                <textarea id="dogCharacteristics" name="characteristics" class="animated-input"></textarea>
-                <span class="input-animation"></span>
-            </div>
-            <button type="submit" class="paw-button">Register <span class="paw-icon">🐾</span></button>
-        </form>
-        <div id="formResponse" class="form-response"></div>
-    </div>
-</section>
-
+</div>
 <section class="section">
     <div class="section-title">
         <h2>Our Services</h2>
@@ -56,7 +53,6 @@
             </div>
             <div class="feature-content">
                 <h3>Dog Training</h3>
-                <p>Access professional training tips, video tutorials, and personalized training plans for your furry friend.</p>
                 <a href="{{ url_for('training') }}" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
             </div>
         </div>
@@ -67,8 +63,7 @@
             </div>
             <div class="feature-content">
                 <h3>Nutrition Guide</h3>
-                <p>Discover the best diet plans, food recommendations, and nutritional advice tailored to your dog's needs.</p>
-                <a href="{{ url_for('nutrition') }}" class="paw-button blue">Explore <span class="paw-icon">🐾</span></a>
+                <a href="{{ url_for('nutrition') }}" class="paw-button">Explore <span class="paw-icon">🐾</span></a>
             </div>
         </div>
         
@@ -79,8 +74,7 @@
             </div>
             <div class="feature-content">
                 <h3>Dog Walking Services</h3>
-                <p>Find reliable dog walkers in your area, schedule walks, and track your dog's activity.</p>
-                <a href="{{ url_for('walking') }}" class="paw-button green">Find Walkers <span class="paw-icon">🐾</span></a>
+                <a href="{{ url_for('walking') }}" class="paw-button">Find Walkers <span class="paw-icon">🐾</span></a>
             </div>
         </div>
         
@@ -90,12 +84,9 @@
             </div>
             <div class="feature-content">
                 <h3>Enrichment Activities</h3>
-                <p>Discover fun games, toys, and activities to keep your dog mentally stimulated and happy.</p>
                 <a href="{{ url_for('enrichment') }}" class="paw-button">Discover Activities <span class="paw-icon">🐾</span></a>
             </div>
         </div>
-        
-
     </div>
 </section>
 
@@ -108,11 +99,9 @@
             <div class="testimonial-content">
                 <p class="testimonial-text">"PAWS has been a game-changer for me and my Golden Retriever, Max. The training resources helped us overcome his leash-pulling habit, and the community events have been a great way to socialize him!"</p>
                 <div class="testimonial-author">
-                    <div class="testimonial-author-image">
-                        <img src="{{ url_for('static', filename='images/testimonial-1.jpg') }}" alt="Sarah Johnson">
-                    </div>
+         
                     <div class="testimonial-author-info">
-                        <h4>Sarah Johnson</h4>
+                        <h4>Rohit</h4>
                         <p>Owner of Max, Golden Retriever</p>
                     </div>
                 </div>
@@ -123,11 +112,8 @@
             <div class="testimonial-content">
                 <p class="testimonial-text">"I was struggling to find the right nutrition plan for my senior Labrador with dietary restrictions. The personalized recommendations from PAWS made all the difference. His energy levels have improved dramatically!"</p>
                 <div class="testimonial-author">
-                    <div class="testimonial-author-image">
-                        <img src="{{ url_for('static', filename='images/testimonial-2.jpg') }}" alt="Michael Chen">
-                    </div>
                     <div class="testimonial-author-info">
-                        <h4>Michael Chen</h4>
+                        <h4>Riya</h4>
                         <p>Owner of Bruno, Labrador Retriever</p>
                     </div>
                 </div>
@@ -138,28 +124,30 @@
             <div class="testimonial-content">
                 <p class="testimonial-text">"As a first-time dog parent, I was overwhelmed with all the information out there. PAWS simplified everything and guided me through the process. The dog walking service has been a lifesaver during my busy work days!"</p>
                 <div class="testimonial-author">
-                    <div class="testimonial-author-image">
-                        <img src="{{ url_for('static', filename='images/testimonial-3.jpg') }}" alt="Emily Rodriguez">
-                    </div>
                     <div class="testimonial-author-info">
-                        <h4>Emily Rodriguez</h4>
+                        <h4>Emily</h4>
                         <p>Owner of Luna, Border Collie Mix</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-
-<section class="cta-section">
-    <div class="cta-container">
-        <h2>Join Our Pack Today!</h2>
-        <p>Start your journey to becoming the best dog parent you can be.</p>
-        <div class="cta-buttons">
-            <button class="paw-button" id="ctaGetStartedBtn">Get Started <span class="paw-icon">🐾</span></button>
-            <a href="{{ url_for('community') }}" class="paw-button purple">Join Community <span class="paw-icon">🐾</span></a>
+    <p style=" color: #ffffb0;">
+        .
+    </p>
+    <p style=" color: #ffffb0;">
+        .
+    </p>
+    <section class="cta-carousel-section">
+        <div class="cta-carousel" id="carousel">
+          <img src="/static/images/walking.jpg" alt="Slide 1">
+          <img src="/static/images/training.jpg" alt="Slide 2">
+          <img src="/static/images/nutrition.png" alt="Slide 3">
+          <img src="/static/images/enrichment.png" alt="Slide 1">
+          <img src="/static/images/walking.jpg" alt="Slide 2">
+          <img src="/static/images/walking.jpg" alt="Slide 3">
         </div>
-    </div>
+      </section>   
 </section>
 {% endblock %}
 
@@ -167,52 +155,96 @@
 <script src="{{ url_for('static', filename='js/dog-profile.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Get Started button scroll
+        const dogProfileModal = document.getElementById("dogProfileModal");
         const getStartedBtn = document.getElementById("getStartedBtn");
         const ctaGetStartedBtn = document.getElementById("ctaGetStartedBtn");
-        const dogProfileSection = document.getElementById("dogProfileSection");
-        
-        if (getStartedBtn && dogProfileSection) {
-            getStartedBtn.addEventListener("click", function() {
-                dogProfileSection.scrollIntoView({ behavior: "smooth" });
-            });
-        }
-        
-        if (ctaGetStartedBtn && dogProfileSection) {
-            ctaGetStartedBtn.addEventListener("click", function() {
-                dogProfileSection.scrollIntoView({ behavior: "smooth" });
-            });
-        }
-        
-        // Animate elements on scroll
+        const closeModalBtn = document.getElementById("closeModalBtn");
+
+        const openModal = () => {
+            dogProfileModal.style.display = "flex";
+            document.body.style.overflow = "hidden"; 
+        };
+
+        const closeModal = () => {
+            dogProfileModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        };
+
+        getStartedBtn.addEventListener("click", openModal);
+        ctaGetStartedBtn.addEventListener("click", openModal);
+        closeModalBtn.addEventListener("click", closeModal);
+
+        window.addEventListener("click", function(event) {
+            if (event.target === dogProfileModal) {
+                closeModal();
+            }
+        });
+
+        // Animate elements on scroll (existing code)
         const animateOnScroll = function() {
             const elements = document.querySelectorAll('.feature-card, .testimonial-card');
-            
             elements.forEach(element => {
                 const position = element.getBoundingClientRect();
-                
-                // Check if element is in viewport
                 if(position.top < window.innerHeight && position.bottom >= 0) {
                     element.style.opacity = '1';
                     element.style.transform = 'translateY(0)';
                 }
             });
         };
-        
-        // Set initial styles
+
         const elements = document.querySelectorAll('.feature-card, .testimonial-card');
         elements.forEach(element => {
             element.style.opacity = '1';
             element.style.transform = 'translateY(30px)';
             element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         });
-        
-        // Run on scroll
+
         window.addEventListener('scroll', animateOnScroll);
-        
-        // Run once on page load
         animateOnScroll();
     });
+   
+  let isSignup = false;
+
+  function openModal() {
+    document.getElementById('auth-modal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('auth-modal').style.display = 'none';
+  }
+
+  function toggleAuthMode() {
+    isSignup = !isSignup;
+    document.getElementById('modal-title').textContent = isSignup ? 'Sign Up' : 'Login';
+    document.getElementById('submit-btn').textContent = isSignup ? 'Sign Up' : 'Login';
+    document.getElementById('toggle-form').textContent = isSignup ? 'Already have an account? Log in' : "Don't have an account? Sign up";
+  }
+
+  document.getElementById('auth-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const endpoint = isSignup ? '/api/signup' : '/api/login';
+    const formData = {
+      username: document.getElementById('username').value,
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value
+    };
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      closeModal();
+      document.getElementById('nav-user').innerHTML = `Hi, ${data.username} <img src="/static/profile-icon.png" class="profile-icon" />`;
+    } else {
+      alert(data.message);
+    }
+  });
 </script>
 {% endblock %}
 

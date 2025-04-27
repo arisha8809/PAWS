@@ -13,33 +13,42 @@
 <section class="section">
     <div class="container">
         <div class="section-title">
-            <h2>Basic Commands</h2>
+            <h2>Select Your Dog and Training Level</h2>
         </div>
-        <div class="training-grid">
-            <div class="training-card">
-                <div class="training-icon">🐕</div>
-                <h3>Sit</h3>
-                <p>The foundation of all dog training. Learn how to teach your dog to sit on command.</p>
-                <button class="paw-button">Watch Tutorial <span class="paw-icon">🐾</span></button>
+
+        <!-- Dog Selection & Training Level -->
+        <form id="training-form">
+            <div class="form-group">
+                <label for="dog-select">Choose Your Dog:</label>
+                <select id="dog-select" class="paw-select">
+                    <option value="" disabled selected>Select a Dog</option>
+                    <!-- Populate with user's added dogs -->
+                    {% for dog in user_dogs %}
+                        <option value="{{ dog.id }}">{{ dog.name }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            <div class="training-card">
-                <div class="training-icon">🐩</div>
-                <h3>Stay</h3>
-                <p>Teach your dog to remain in place until released, an essential safety command.</p>
-                <button class="paw-button blue">Watch Tutorial <span class="paw-icon">🐾</span></button>
+
+            <div class="form-group">
+                <label for="training-level">Select Training Level:</label>
+                <select id="training-level" class="paw-select">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
             </div>
-            <div class="training-card">
-                <div class="training-icon">🦮</div>
-                <h3>Come</h3>
-                <p>The recall command could save your dog's life. Learn how to make it reliable.</p>
-                <button class="paw-button purple">Watch Tutorial <span class="paw-icon">🐾</span></button>
+
+            <button type="submit" class="paw-button">Show Training Commands</button>
+        </form>
+        
+        <!-- Commands Section -->
+        <div id="commands-section" class="training-grid" style="display: none;">
+            <div class="section-title">
+                <h2>Training Commands</h2>
             </div>
-            <div class="training-card">
-                <div class="training-icon">🐕‍🦺</div>
-                <h3>Down</h3>
-                <p>Teach your dog to lie down on command, perfect for calming excited pups.</p>
-                <button class="paw-button green">Watch Tutorial <span class="paw-icon">🐾</span></button>
-            </div>
+
+            <!-- Commands will be dynamically added here based on training level -->
+            <div id="commands-list"></div>
         </div>
     </div>
 </section>
@@ -78,21 +87,6 @@
     </div>
 </section>
 
-<section class="section trainer-section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Find a Trainer</h2>
-        </div>
-        <div class="trainer-search">
-            <p>Connect with certified professional dog trainers in your area.</p>
-            <form class="search-form">
-                <input type="text" placeholder="Enter your zip code" class="animated-input">
-                <button type="  placeholder="Enter your zip code" class="animated-input">
-                <button type="submit" class="paw-button">Search <span class="paw-icon">🐾</span></button>
-            </form>
-        </div>
-    </div>
-</section>
 {% endblock %}
 
 {% block extra_css %}
@@ -133,6 +127,13 @@
         font-size: 1.5rem;
         max-width: 600px;
         margin: 0 auto;
+    }
+    
+    .paw-select {
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%;
+        margin-bottom: 1rem;
     }
     
     .training-grid {
@@ -199,87 +200,56 @@
         padding: 2rem;
         flex-grow: 1;
     }
-    
-    .trainer-section {
-        background-color: var(--secondary-bg);
-        border-radius: var(--border-radius);
-        margin: 4rem auto;
-        max-width: 1000px;
-    }
-    
-    .trainer-search {
-        text-align: center;
-        padding: 2rem;
-    }
-    
-    .search-form {
-        display: flex;
-        max-width: 500px;
-        margin: 1.5rem auto;
-        gap: 1rem;
-    }
-    
-    @media (max-width: 768px) {
-        .page-header {
-            padding: 60px 0;
-        }
-        
-        .page-header h1 {
-            font-size: 2.5rem;
-        }
-        
-        .page-header p {
-            font-size: 1.2rem;
-        }
-        
-        .resource-item {
-            flex-direction: column;
-        }
-        
-        .resource-icon {
-            min-width: auto;
-            padding: 1.5rem;
-        }
-        
-        .search-form {
-            flex-direction: column;
-        }
-    }
 </style>
 {% endblock %}
 
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Animate elements on scroll
-        const animateOnScroll = function() {
-            const elements = document.querySelectorAll('.training-card, .resource-item');
-            
-            elements.forEach(element => {
-                const position = element.getBoundingClientRect();
-                
-                // Check if element is in viewport
-                if(position.top < window.innerHeight && position.bottom >= 0) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
+        const form = document.getElementById('training-form');
+        const dogSelect = document.getElementById('dog-select');
+        const trainingLevel = document.getElementById('training-level');
+        const commandsSection = document.getElementById('commands-section');
+        const commandsList = document.getElementById('commands-list');
+
+        const commands = {
+            beginner: [
+                { command: 'Sit', description: 'Teach your dog to sit.', youtubeLink: 'https://www.youtube.com/watch?v=H7jGB2u0rpA' },
+                { command: 'Stay', description: 'Teach your dog to stay in place.', youtubeLink: 'https://www.youtube.com/watch?v=pFE5sHRSxzQ' }
+            ],
+            intermediate: [
+                { command: 'Lie Down', description: 'Teach your dog to lie down.', youtubeLink: 'https://www.youtube.com/watch?v=m_MKz0OPkdY' },
+                { command: 'Come', description: 'Teach your dog to come when called.', youtubeLink: 'https://www.youtube.com/watch?v=J6gOtF2doeY' }
+            ],
+            advanced: [
+                { command: 'Heel', description: 'Teach your dog to walk by your side without pulling.', youtubeLink: 'https://www.youtube.com/watch?v=K5gVGHaa_jA' },
+                { command: 'Roll Over', description: 'Teach your dog to roll over on command.', youtubeLink: 'https://www.youtube.com/watch?v=6jK1xaRt6O0' }
+            ]
         };
-        
-        // Set initial styles
-        const elements = document.querySelectorAll('.training-card, .resource-item');
-        elements.forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px)';
-            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const selectedDog = dogSelect.value;
+            const selectedLevel = trainingLevel.value;
+
+            if (selectedDog && selectedLevel) {
+                commandsSection.style.display = 'block';
+                commandsList.innerHTML = '';
+
+                commands[selectedLevel].forEach(command => {
+                    const commandCard = document.createElement('div');
+                    commandCard.classList.add('training-card');
+                    commandCard.innerHTML = `
+                        <div class="training-icon">🐕</div>
+                        <h3>${command.command}</h3>
+                        <p>${command.description}</p>
+                        <a href="${command.youtubeLink}" class="paw-button" target="_blank">Watch Tutorial <span class="paw-icon">🐾</span></a>
+                    `;
+                    commandsList.appendChild(commandCard);
+                });
+            }
         });
-        
-        // Run on scroll
-        window.addEventListener('scroll', animateOnScroll);
-        
-        // Run once on page load
-        animateOnScroll();
     });
 </script>
 {% endblock %}
-

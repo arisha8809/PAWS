@@ -4,30 +4,42 @@
 
 {% block content %}
 <div class="page-header">
-    <h1>Enrichment Activities</h1>
-    <p>Discover fun games, toys, and activities to keep your dog mentally stimulated</p>
+    <h1>Enrichment Activities for Happy Dogs</h1>
+    <p>Discover fun games, toys, and activities to keep your dog mentally stimulated and joyful</p>
+    <div class="dog-animation">
+        <div class="dog-silhouette"></div>
+    </div>
 </div>
 
 <section class="content-section">
     <h2>Why Enrichment Matters</h2>
     <div class="info-card">
-        <p>Mental stimulation is just as important as physical exercise for your dog's overall well-being. Enrichment activities help prevent boredom, reduce anxiety and destructive behaviors, and strengthen the bond between you and your furry friend.</p>
-        <p>Dogs who receive regular mental enrichment tend to be happier, calmer, and better behaved. Explore our collection of enrichment ideas below to keep your dog's mind active and engaged!</p>
+        <div class="info-card-content">
+            <div class="info-icon">🧠</div>
+            <div>
+                <p>Mental stimulation is just as important as physical exercise for your dog's overall well-being. Enrichment activities help prevent boredom, reduce anxiety and destructive behaviors, and strengthen the bond between you and your furry friend.</p>
+                <p>Dogs who receive regular mental enrichment tend to be happier, calmer, and better behaved. Explore our collection of enrichment ideas below to keep your dog's mind active and engaged!</p>
+            </div>
+        </div>
+        <div class="quick-tips">
+            <h4>Quick Tip</h4>
+            <p>Even just 15 minutes of enrichment activities daily can make a significant difference in your dog's behavior and happiness.</p>
+        </div>
     </div>
 </section>
 
-<div class="paw-divider">
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
+<div class="activity-filter">
+    <button class="filter-button active" data-filter="all">All Activities</button>
+    <button class="filter-button" data-filter="indoor">Indoor</button>
+    <button class="filter-button" data-filter="outdoor">Outdoor</button>
+    <button class="filter-button" data-filter="diy">DIY Projects</button>
 </div>
 
-<section class="content-section">
+<section class="content-section filter-section" id="indoor-activities">
     <h2>Indoor Activities</h2>
     <div class="activities-grid">
-        <div class="activity-card">
+        <div class="activity-card" data-category="indoor">
+            <span class="difficulty-badge easy">Beginner</span>
             <h3>Puzzle Toys</h3>
             <p>Challenge your dog's problem-solving skills with toys that dispense treats when manipulated correctly.</p>
             <div class="activity-tips">
@@ -38,9 +50,10 @@
                     <li>Supervise your dog during play</li>
                 </ul>
             </div>
-            <a href="#" class="paw-button">Explore Puzzles <span class="paw-icon">🐾</span></a>
+            <a href="#puzzle-modal" class="paw-button modal-trigger">Explore Puzzles <span class="paw-icon">🐾</span></a>
         </div>
-        <div class="activity-card">
+        <div class="activity-card" data-category="indoor">
+            <span class="difficulty-badge medium">Intermediate</span>
             <h3>Scent Games</h3>
             <p>Tap into your dog's powerful sense of smell with games that encourage them to use their nose.</p>
             <div class="activity-tips">
@@ -51,9 +64,11 @@
                     <li>Teach your dog to find specific scents</li>
                 </ul>
             </div>
-            <a href="#" class="paw-button">Learn Scent Games <span class="paw-icon">🐾</span></a>
+            <div class="benefit-tag">Reduces anxiety</div>
+            <a href="#scent-modal" class="paw-button modal-trigger">Learn Scent Games <span class="paw-icon">🐾</span></a>
         </div>
-        <div class="activity-card">
+        <div class="activity-card" data-category="indoor">
+            <span class="difficulty-badge medium">Intermediate</span>
             <h3>Training Games</h3>
             <p>Combine learning with play by teaching your dog new tricks and commands.</p>
             <div class="activity-tips">
@@ -64,61 +79,75 @@
                     <li>End on a successful note</li>
                 </ul>
             </div>
-            <a href="#" class="paw-button">Discover Games <span class="paw-icon">🐾</span></a>
+            <div class="benefit-tag">Builds confidence</div>
+            <a href="#training-modal" class="paw-button modal-trigger">Discover Games <span class="paw-icon">🐾</span></a>
+        </div>
+        <div class="activity-card" data-category="indoor">
+            <span class="difficulty-badge easy">Beginner</span>
+            <h3>Interactive Toys</h3>
+            <p>Electronic toys that move unpredictably or make sounds to keep your dog engaged even when you're busy.</p>
+            <div class="activity-tips">
+                <h4>Tips:</h4>
+                <ul>
+                    <li>Introduce gradually to prevent fear</li>
+                    <li>Rotate toys to maintain interest</li>
+                    <li>Choose toys with different functions</li>
+                </ul>
+            </div>
+            <div class="benefit-tag">Great for busy owners</div>
+            <a href="#interactive-modal" class="paw-button modal-trigger">Browse Toys <span class="paw-icon">🐾</span></a>
         </div>
     </div>
 </section>
 
-<div class="paw-divider">
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-</div>
-
-<section class="content-section">
+<section class="content-section filter-section" id="outdoor-adventures">
     <h2>Outdoor Adventures</h2>
     <div class="adventures-grid">
-        <div class="adventure-card">
+        <div class="adventure-card" data-category="outdoor">
+            <div class="card-image sensory-walks"></div>
             <h3>Sensory Walks</h3>
             <p>Transform regular walks into enriching experiences by allowing your dog to explore different environments.</p>
-            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
+            <div class="benefit-tag">Mental stimulation</div>
+            <a href="#sensory-modal" class="paw-button modal-trigger">Learn More <span class="paw-icon">🐾</span></a>
         </div>
-        <div class="adventure-card">
+        <div class="adventure-card" data-category="outdoor">
+            <div class="card-image agility-play"></div>
             <h3>Agility Play</h3>
             <p>Set up a simple agility course in your backyard using household items.</p>
-            <a href="#" class="paw-button">DIY Agility <span class="paw-icon">🐾</span></a>
+            <div class="benefit-tag">Physical & mental workout</div>
+            <a href="#agility-modal" class="paw-button modal-trigger">DIY Agility <span class="paw-icon">🐾</span></a>
         </div>
-        <div class="adventure-card">
+        <div class="adventure-card" data-category="outdoor">
+            <div class="card-image water-activities"></div>
             <h3>Water Activities</h3>
             <p>For water-loving dogs, swimming and water games provide excellent physical and mental stimulation.</p>
-            <a href="#" class="paw-button">Water Fun <span class="paw-icon">🐾</span></a>
+            <div class="benefit-tag">Cooling exercise</div>
+            <a href="#water-modal" class="paw-button modal-trigger">Water Fun <span class="paw-icon">🐾</span></a>
         </div>
-        <div class="adventure-card">
+        <div class="adventure-card" data-category="outdoor">
+            <div class="card-image fetch-variations"></div>
             <h3>Fetch Variations</h3>
             <p>Add new challenges to the classic game of fetch to keep it interesting.</p>
-            <a href="#" class="paw-button">Fetch Ideas <span class="paw-icon">🐾</span></a>
+            <div class="benefit-tag">Low-prep activity</div>
+            <a href="#fetch-modal" class="paw-button modal-trigger">Fetch Ideas <span class="paw-icon">🐾</span></a>
         </div>
     </div>
 </section>
 
-<div class="paw-divider">
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-</div>
-
-<section class="content-section">
+<section class="content-section filter-section" id="diy-section">
     <h2>DIY Enrichment Toys</h2>
     <div class="diy-container">
         <div class="diy-intro">
             <p>Create engaging toys for your dog using items you already have at home. These DIY projects are budget-friendly and can be customized to your dog's preferences.</p>
+            <div class="diy-difficulty">
+                <span class="difficulty-icon easy">⭐</span> Beginner
+                <span class="difficulty-icon medium">⭐⭐</span> Intermediate
+                <span class="difficulty-icon hard">⭐⭐⭐</span> Advanced
+            </div>
         </div>
         <div class="diy-projects">
-            <div class="diy-project">
+            <div class="diy-project" data-category="diy">
+                <span class="difficulty-icon easy">⭐</span>
                 <h3>Treat Dispensing Bottle</h3>
                 <div class="diy-steps">
                     <h4>You'll Need:</h4>
@@ -134,9 +163,11 @@
                         <li>Fill with small treats</li>
                         <li>Replace cap and let your dog roll it around to dispense treats</li>
                     </ol>
+                    <a href="#bottle-modal" class="paw-button modal-trigger">See Tutorial <span class="paw-icon">🐾</span></a>
                 </div>
             </div>
-            <div class="diy-project">
+            <div class="diy-project" data-category="diy">
+                <span class="difficulty-icon easy">⭐</span>
                 <h3>Muffin Tin Game</h3>
                 <div class="diy-steps">
                     <h4>You'll Need:</h4>
@@ -151,21 +182,369 @@
                         <li>Cover each cup with a tennis ball</li>
                         <li>Let your dog figure out how to remove the balls to get the treats</li>
                     </ol>
+                    <a href="#muffin-modal" class="paw-button modal-trigger">See Tutorial <span class="paw-icon">🐾</span></a>
+                </div>
+            </div>
+            <div class="diy-project" data-category="diy">
+                <span class="difficulty-icon medium">⭐⭐</span>
+                <h3>Snuffle Mat</h3>
+                <div class="diy-steps">
+                    <h4>You'll Need:</h4>
+                    <ul>
+                        <li>Rubber sink mat with holes</li>
+                        <li>Fleece fabric cut into strips</li>
+                        <li>Scissors</li>
+                    </ul>
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Cut fleece into 1" x 7" strips</li>
+                        <li>Push strips halfway through holes in mat</li>
+                        <li>Tie tight double knots on both sides</li>
+                        <li>Continue until mat is filled with fleece strips</li>
+                    </ol>
+                    <a href="#snuffle-modal" class="paw-button modal-trigger">See Tutorial <span class="paw-icon">🐾</span></a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<section class="newsletter-section">
+    <div class="newsletter-container">
+        <div class="newsletter-content">
+            <h2>Get Weekly Enrichment Ideas</h2>
+            <p>Sign up for our newsletter to receive new enrichment activities, tips, and exclusive content for your dog!</p>
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="paw-button">Subscribe <span class="paw-icon">🐾</span></button>
+            </form>
+            <div class="success-message" id="success-message">Thanks for subscribing!</div>
+        </div>
+        <div class="newsletter-image"></div>
+    </div>
+</section>
+
+<!-- Modals -->
+<div id="puzzle-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Puzzle Toys for Dogs</h2>
+        <p>Puzzle toys challenge your dog mentally and provide entertainment while you're busy. They come in various difficulty levels to match your dog's experience and problem-solving abilities.</p>
+        <h3>Recommended Puzzles:</h3>
+        <ul>
+            <li>Treat-dispensing balls</li>
+            <li>Hide-and-seek plush toys</li>
+            <li>Sliding puzzle toys</li>
+            <li>Flip board puzzles</li>
+        </ul>
+        <p>Start with easier puzzles and work your way up as your dog masters each challenge!</p>
+    </div>
+</div>
+
+<div id="scent-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Scent Games for Dogs</h2>
+        <p>Dogs experience the world primarily through their nose. Scent games tap into this natural ability and provide excellent mental stimulation.</p>
+        <h3>Try These Games:</h3>
+        <ul>
+            <li>Treat Hunt: Hide treats around the house for your dog to find</li>
+            <li>Which Hand: Hide a treat in one hand and let your dog guess</li>
+            <li>Scent Trails: Create a trail of treats for your dog to follow</li>
+            <li>Find It: Teach your dog to find specific scented objects</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Additional Modals -->
+<div id="training-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Training Games</h2>
+        <p>Training doesn't have to be boring! These games make learning fun for your dog.</p>
+        <h3>Fun Training Games:</h3>
+        <ul>
+            <li>Name That Toy: Teach your dog the names of different toys</li>
+            <li>Target Practice: Teach your dog to touch objects with their nose</li>
+            <li>Hide and Seek: Have your dog find family members</li>
+            <li>Trick Chains: Link multiple tricks together in sequence</li>
+        </ul>
+    </div>
+</div>
+
+<div id="interactive-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Interactive Toys</h2>
+        <p>These toys keep your dog engaged even when you're busy with other tasks.</p>
+        <h3>Popular Options:</h3>
+        <ul>
+            <li>Automatic ball launchers</li>
+            <li>Electronic motion toys</li>
+            <li>Squeaky toys with unpredictable movements</li>
+            <li>Toys with recorded sounds</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Add modals for outdoor activities -->
+<div id="sensory-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Sensory Walks</h2>
+        <p>Make walks more enriching by focusing on exploration and sensory experiences.</p>
+        <h3>Tips for Sensory Walks:</h3>
+        <ul>
+            <li>Visit different environments (urban, forest, beach)</li>
+            <li>Allow plenty of sniffing time</li>
+            <li>Walk on various surfaces (grass, sand, concrete)</li>
+            <li>Take "sniffari" walks where your dog leads the way</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Add remaining modals for all buttons -->
+<div id="agility-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>DIY Agility Course</h2>
+        <p>Create a simple agility course in your backyard using everyday items.</p>
+        <h3>DIY Agility Equipment:</h3>
+        <ul>
+            <li>Jumps: Use pool noodles balanced on buckets</li>
+            <li>Weave poles: Arrange garden stakes in a line</li>
+            <li>Tunnel: Use a children's play tunnel</li>
+            <li>Pause table: Use a sturdy outdoor coffee table</li>
+        </ul>
+        <p>Start with basic commands and gradually add difficulty as your dog masters each obstacle.</p>
+    </div>
+</div>
+
+<div id="water-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Water Activities</h2>
+        <p>Water play is great for cooling off in warm weather while providing exercise and mental stimulation.</p>
+        <h3>Water Activity Ideas:</h3>
+        <ul>
+            <li>Kiddie pool games with floating toys</li>
+            <li>Sprinkler play</li>
+            <li>Swimming in dog-friendly lakes or pools</li>
+            <li>Bobbing for treats in a shallow water basin</li>
+        </ul>
+        <p>Always supervise your dog around water and introduce water activities gradually.</p>
+    </div>
+</div>
+
+<div id="fetch-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Fetch Variations</h2>
+        <p>Keep fetch interesting with these creative variations.</p>
+        <h3>Try These Variations:</h3>
+        <ul>
+            <li>Uphill fetch for an extra challenge</li>
+            <li>Multi-ball fetch with several balls thrown in sequence</li>
+            <li>Hidden fetch where you hide the ball while your dog waits</li>
+            <li>Fetch and drop, teaching your dog to drop items in a specific container</li>
+        </ul>
+    </div>
+</div>
+
+<div id="bottle-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Treat Dispensing Bottle Tutorial</h2>
+        <p>This simple DIY toy is great for dogs who enjoy working for their treats.</p>
+        <h3>Safety Tips:</h3>
+        <ul>
+            <li>Use only sturdy plastic bottles</li>
+            <li>Make sure there are no sharp edges</li>
+            <li>Always supervise play</li>
+            <li>Replace the bottle if it becomes damaged</li>
+        </ul>
+        <p>For extra challenge, freeze wet dog food or peanut butter inside before giving it to your dog.</p>
+    </div>
+</div>
+
+<div id="muffin-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Muffin Tin Game Tutorial</h2>
+        <p>This game helps develop problem-solving skills and persistence.</p>
+        <h3>Variations:</h3>
+        <ul>
+            <li>Use different objects to cover the treats (not just tennis balls)</li>
+            <li>Place treats in only a few cups to make it more challenging</li>
+            <li>Add scents to some cups to create a more complex game</li>
+        </ul>
+        <p>This game is perfect for dogs of all ages and abilities.</p>
+    </div>
+</div>
+
+<div id="snuffle-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>DIY Snuffle Mat Tutorial</h2>
+        <p>A snuffle mat mimics foraging in grass and provides excellent mental stimulation.</p>
+        <h3>Tips for Success:</h3>
+        <ul>
+            <li>Use brightly colored fleece for visual appeal</li>
+            <li>Make knots very tight so they don't come loose</li>
+            <li>Start with easy-to-find treats before making it more challenging</li>
+            <li>Wash occasionally to keep clean</li>
+        </ul>
+        <p>This project takes a few hours but creates a toy that will provide years of enrichment.</p>
+    </div>
+</div>
+
+<script>
+    // Modal functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Modal functionality
+        const modalTriggers = document.querySelectorAll('.modal-trigger');
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+        
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                const modalId = this.getAttribute('href');
+                document.querySelector(modalId).classList.add('show-modal');
+            });
+        });
+        
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.modal').classList.remove('show-modal');
+            });
+        });
+        
+        window.addEventListener('click', function(e) {
+            modals.forEach(modal => {
+                if (e.target === modal) {
+                    modal.classList.remove('show-modal');
+                }
+            });
+        });
+        
+        // Category filtering
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const activityCards = document.querySelectorAll('[data-category]');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter cards
+                if (filter === 'all') {
+                    activityCards.forEach(card => card.style.display = 'block');
+                } else {
+                    activityCards.forEach(card => {
+                        if (card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletter-form');
+        const successMessage = document.getElementById('success-message');
+        
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Simulate form submission
+                newsletterForm.style.display = 'none';
+                successMessage.style.display = 'block';
+            });
+        }
+    });
+</script>
 {% endblock %}
 
 {% block extra_css %}
 <style>
+    :root {
+        --primary-bg: #f9ff8c;
+        --primary-light: #ffffb0;
+        --primary-dark: #e6eb79;
+        --secondary-bg: #ffffff;
+        --primary-text: #333333;
+        --secondary-text: #666666;
+        --accent-orange: #ff9d5c;
+        --accent-blue: #5cb8ff;
+        --accent-purple: #b45cff;
+        --accent-green: #5cff9d;
+        --accent-brown: #a67c52;
+        --accent-gray: #cccccc;
+        --shadow: rgba(0, 0, 0, 0.1);
+        --border-radius: 20px;
+        --transition: all 0.3s ease;
+    }
+    
+    body {
+        background-color: var(--primary-light);
+        color: var(--primary-text);
+    }
+    
     .page-header {
         text-align: center;
         padding: 3rem 1rem;
-        background-color: var(--secondary-bg);
+        background-color: var(--primary-bg);
         margin-bottom: 2rem;
         border-radius: var(--border-radius);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .page-header h1 {
+        margin-bottom: 0.5rem;
+        color: var(--primary-text);
+        position: relative;
+        z-index: 2;
+    }
+    
+    .page-header p {
+        font-size: 1.2rem;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .dog-animation {
+        position: absolute;
+        bottom: -10px;
+        right: 30px;
+        width: 100px;
+        height: 100px;
+        z-index: 1;
+        opacity: 0.7;
+    }
+    
+    .dog-silhouette {
+        width: 100%;
+        height: 100%;
+        background-image: url('/api/placeholder/100/100');
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: wag 2s infinite alternate;
+    }
+    
+    @keyframes wag {
+        0% { transform: rotate(-5deg); }
+        100% { transform: rotate(5deg); }
+    }
+    
+    .content-section {
+        padding: 2rem 0;
     }
     
     .info-card {
@@ -174,6 +553,62 @@
         border-radius: var(--border-radius);
         margin: 2rem 0;
         box-shadow: 0 5px 15px var(--shadow);
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    
+    .info-card-content {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+    
+    .info-icon {
+        font-size: 2.5rem;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+    
+    .quick-tips {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: var(--primary-light);
+        border-radius: var(--border-radius);
+        border-left: 5px solid var(--accent-orange);
+    }
+    
+    .quick-tips h4 {
+        margin-top: 0;
+        color: var(--accent-orange);
+    }
+    
+    .activity-filter {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
+    .filter-button {
+        background-color: var(--secondary-bg);
+        border: 2px solid var(--primary-dark);
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: var(--transition);
+    }
+    
+    .filter-button:hover {
+        background-color: var(--primary-bg);
+        transform: translateY(-3px);
+    }
+    
+    .filter-button.active {
+        background-color: var(--primary-dark);
+        color: var(--primary-text);
     }
     
     .activities-grid {
@@ -181,6 +616,7 @@
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
         margin: 2rem 0;
+        margin-left: 6%;
     }
     
     .activity-card {
@@ -189,6 +625,7 @@
         border-radius: var(--border-radius);
         box-shadow: 0 5px 15px var(--shadow);
         transition: var(--transition);
+        position: relative;
     }
     
     .activity-card:hover {
@@ -196,15 +633,117 @@
         box-shadow: 0 10px 20px var(--shadow);
     }
     
+    .difficulty-badge {
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: white;
+    }
+    
+    .difficulty-badge.easy {
+        background-color: var(--accent-green);
+    }
+    
+    .difficulty-badge.medium {
+        background-color: var(--accent-orange);
+    }
+    
+    .difficulty-badge.hard {
+        background-color: var(--accent-purple);
+    }
+    
+    .benefit-tag {
+        display: inline-block;
+        background-color: var(--primary-light);
+        color: var(--primary-text);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
     .activity-tips {
         background-color: rgba(92, 184, 255, 0.1);
         padding: 1rem;
         border-radius: var(--border-radius);
         margin: 1rem 0;
+        border-left: 3px solid var(--accent-blue);
+    }
+    
+    .activity-tips h4 {
+        margin-top: 0;
+        color: var(--accent-blue);
     }
     
     .activity-tips ul {
         padding-left: 1.5rem;
+        margin-bottom: 0;
+    }
+    
+    .paw-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: var(--accent-orange);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+    }
+    
+    .paw-button:hover {
+        background-color: var(--accent-brown);
+        transform: translateY(-3px);
+    }
+    
+    .paw-icon {
+        font-size: 1.2rem;
+    }
+    
+    .paw-divider {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin: 3rem 0;
+    }
+    
+    .paw-print {
+        width: 30px;
+        height: 30px;
+        background-color: var(--primary-dark);
+        border-radius: 50%;
+        position: relative;
+        transform: rotate(45deg);
+    }
+    
+    .paw-print:before, .paw-print:after {
+        content: "";
+        position: absolute;
+        background-color: var(--primary-dark);
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+    }
+    
+    .paw-print:before {
+        top: -6px;
+        left: 0;
+        box-shadow: 15px 0 0 var(--primary-dark);
+    }
+    
+    .paw-print:after {
+        bottom: -6px;
+        left: 0;
+        box-shadow: 15px 0 0 var(--primary-dark);
     }
     
     .adventures-grid {
@@ -212,6 +751,7 @@
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 2rem;
         margin: 2rem 0;
+        margin-left: 6%;
     }
     
     .adventure-card {
@@ -222,11 +762,37 @@
         transition: var(--transition);
         display: flex;
         flex-direction: column;
+        position: relative;
+        overflow: hidden;
     }
     
     .adventure-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px var(--shadow);
+    }
+    
+    .card-image {
+        height: 150px;
+        margin: -1.5rem -1.5rem 1rem -1.5rem;
+        background-color: var(--accent-gray);
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .card-image.sensory-walks {
+        background-image: url('/api/placeholder/300/150');
+    }
+    
+    .card-image.agility-play {
+        background-image: url('/api/placeholder/300/150');
+    }
+    
+    .card-image.water-activities {
+        background-image: url('/api/placeholder/300/150');
+    }
+    
+    .card-image.fetch-variations {
+        background-image: url('/api/placeholder/300/150');
     }
     
     .adventure-card h3 {
@@ -244,26 +810,63 @@
         border-radius: var(--border-radius);
         margin: 2rem 0;
         box-shadow: 0 5px 15px var(--shadow);
+        width: 80%;
+        margin-left: 5%;
     }
     
     .diy-intro {
         margin-bottom: 2rem;
     }
     
+    .diy-difficulty {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+    }
+    
+    .difficulty-icon {
+        margin-right: 0.3rem;
+    }
+    
+    .difficulty-icon.easy {
+        color: var(--accent-green);
+    }
+    
+    .difficulty-icon.medium {
+        color: var(--accent-orange);
+    }
+    
+    .difficulty-icon.hard {
+        color: var(--accent-purple);
+    }
+    
     .diy-projects {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
+        margin-left: 6%;
     }
     
     .diy-project {
         background-color: rgba(166, 124, 82, 0.1);
         padding: 1.5rem;
         border-radius: var(--border-radius);
+        position: relative;
+        border-left: 3px solid var(--accent-brown);
+    }
+    
+    .diy-project h3 {
+        margin-top: 0.5rem;
     }
     
     .diy-steps {
         margin-top: 1rem;
+    }
+    
+    .diy-steps h4 {
+        color: var(--accent-brown);
+        margin-bottom: 0.5rem;
     }
     
     .diy-steps ul, .diy-steps ol {
@@ -271,11 +874,198 @@
         margin: 0.5rem 0 1rem;
     }
     
+    .newsletter-section {
+        margin: 4rem 0 2rem;
+    }
+    
+    .newsletter-container {
+        background-color: var(--primary-bg);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .newsletter-content {
+        flex: 1;
+        padding-right: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .newsletter-image {
+        width: 200px;
+        height: 200px;
+        background-image: url('/api/placeholder/200/200');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .newsletter-form {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .newsletter-form input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--primary-dark);
+        border-radius: 30px;
+        font-size: 1rem;
+    }
+    
+    .newsletter-form input:focus {
+        outline: none;
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(92, 184, 255, 0.3);
+    }
+    
+    .success-message {
+        background-color: var(--accent-green);
+        color: white;
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        text-align: center;
+        font-weight: bold;
+        display: none;
+    }
+    
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        overflow: auto;
+    }
+    
+    .modal.show-modal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .modal-content {
+        background-color: var(--secondary-bg);
+        margin: auto;
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        max-width: 600px;
+        width: 90%;
+        position: relative;
+        animation: modalFade 0.3s;
+    }
+    
+    @keyframes modalFade {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--secondary-text);
+        transition: var(--transition);
+    }
+    
+    .close-modal:hover {
+        color: var(--primary-text);
+    }
+    
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
-        .activities-grid, .adventures-grid, .diy-projects {
+        .activities-grid, 
+        .adventures-grid, 
+        .diy-projects {
             grid-template-columns: 1fr;
+        }
+        
+        .info-card-content {
+            flex-direction: column;
+        }
+        
+        .newsletter-container {
+            flex-direction: column;
+        }
+        
+        .newsletter-content {
+            padding-right: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .newsletter-form {
+            flex-direction: column;
+        }
+        
+        .activity-filter {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .filter-button {
+            width: 80%;
+            text-align: center;
+        }
+    }
+    
+    /* Animations */
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .activity-card:hover h3 {
+        color: var(--accent-orange);
+    }
+    
+    .adventure-card:hover h3 {
+        color: var(--accent-blue);
+    }
+    
+    .diy-project:hover h3 {
+        color: var(--accent-brown);
+    }
+    
+    /* Print styles */
+    @media print {
+        .modal, 
+        .paw-button, 
+        .newsletter-section {
+            display: none !important;
+        }
+        
+        .page-header, 
+        .info-card, 
+        .activity-card, 
+        .adventure-card, 
+        .diy-container {
+            box-shadow: none;
+            border: 1px solid #ddd;
+        }
+        
+        .dog-animation {
+            display: none;
         }
     }
 </style>
 {% endblock %}
-

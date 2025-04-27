@@ -1,69 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}PAWS - Dog Owner's Platform{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-nav.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    {% block extra_css %}{% endblock %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}PAWS - Dog Owner's Platform{% endblock %}</title>
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-nav.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    .hidden {
+      display: none !important;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      height:700px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .auth-toggle-text {
+      color: #007bff;
+      cursor: pointer;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* Google Sign-In button style */
+    .g-signin-button {
+      width: 100%;
+      margin-top: 1rem;
+      background: #4285f4;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+    }
+
+    .g-signin-button img {
+      margin-right: 10px;
+      width: 35px;
+      height: 35px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-error {
+      color: #dc3545;
+      font-size: 0.85em;
+      margin-top: 5px;
+    }
+  </style>
+
+  {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo-container">
-                <span class="logo-text">PAWS</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('training') }}">Training</a></li>
-                    <li><a href="{{ url_for('nutrition') }}">Nutrition</a></li>
-                    <li><a href="{{ url_for('community') }}">Community</a></li>
-                    <li><a href="{{ url_for('walking') }}">Walking</a></li>
-                    <li><a href="{{ url_for('enrichment') }}">Enrichment</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header>
+  <div class="header-container">
+    <div class="logo-container">
+      <a href="{{ url_for('index') }}" class="logo-text">PAWS</a>
+    </div>
+    
+    <!-- Mobile Hamburger Button -->
+    <div class="hamburger" id="hamburger-menu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    <nav class="main-nav" id="main-nav">
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('training') }}">Training</a></li>
+        <li><a href="{{ url_for('nutrition') }}">Nutrition</a></li>
+        <li><a href="{{ url_for('walking') }}">Walking</a></li>
+        <li><a href="{{ url_for('enrichment') }}">Enrichment</a></li>
+      </ul>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="{{ url_for('static', filename='images/paws-logo.jpg') }}" alt="PAWS Logo">
-                <h3>PAWS</h3>
-                <p>Your dog's best friend</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('training') }}">Training</a></li>
-                    <li><a href="{{ url_for('nutrition') }}">Nutrition</a></li>
-                    <li><a href="{{ url_for('community') }}">Community</a></li>
-                    <li><a href="{{ url_for('walking') }}">Walking</a></li>
-                    <li><a href="{{ url_for('enrichment') }}">Enrichment</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Contact Us</h3>
-                <p>Email: info@pawsplatform.com</p>
-                <p>Phone: (123) 456-7890</p>
-                <p>Address: 123 Doggy Lane, Pawsville</p>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2023 PAWS Platform. All rights reserved.</p>
-        </div>
-    </footer>
+      <div id="nav-user">
+        {% if session.get('username') %}
+          <span>Hi, {{ session['username'] }}</span>
+          <a href="{{ url_for('profile') }}">
+            <img src="{{ url_for('static', filename='images/profile-icon.png') }}" alt="Profile" class="profile-icon" />
+          </a>
+          <button onclick="signOutUser()" class="sign-out-btn">Sign Out</button>
+        {% else %}
+          <button onclick="openModal()" class="login-btn">Login / Sign Up</button>
+        {% endif %}
+      </div>
+    </nav>
+  </div>
+</header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
 
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    {% block extra_js %}{% endblock %}
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <h3>PAWS</h3>
+        <p>Your dog's best friend</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('training') }}">Training</a></li>
+          <li><a href="{{ url_for('nutrition') }}">Nutrition</a></li>
+          <li><a href="{{ url_for('walking') }}">Walking</a></li>
+          <li><a href="{{ url_for('enrichment') }}">Enrichment</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:info@pawsplatform.com">info@pawsplatform.com</a></p>
+        <p>Phone: 1800 123 2008</p>
+        <p>Address: 10, Valor Ct, Lavasa, Maharashtra 412112</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 PAWS Platform. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Login/Signup Modal -->
+  <div id="auth-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" aria-label="Close">&times;</span>
+      <h2 id="modal-title">Login</h2>
+      
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form" novalidate>
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" name="email" placeholder="Email address" required />
+          <div id="login-email-error" class="form-error hidden"></div>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" placeholder="Password" required />
+          <div id="login-password-error" class="form-error hidden"></div>
+        </div>
+        <button type="submit">Login</button>
+        <p class="auth-toggle-text" onclick="toggleAuthForms('signup')">Don't have an account? Sign Up</p>
+      </form>
+      
+      <!-- Signup Form -->
+      <form id="signup-form" class="auth-form hidden" novalidate>
+        <div class="form-group">
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" name="username" placeholder="Username" required />
+          <div id="signup-username-error" class="form-error hidden"></div>
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" name="email" placeholder="Email address" required />
+          <div id="signup-email-error" class="form-error hidden"></div>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" placeholder="Password" required minlength="8" />
+          <div id="signup-password-error" class="form-error hidden"></div>
+        </div>
+        <button type="submit">Sign Up</button>
+        <p class="auth-toggle-text" onclick="toggleAuthForms('login')">Already have an account? Log In</p>
+      </form>
+
+      <!-- Divider -->
+      <div class="auth-divider">
+        <span>OR</span>
+      </div>
+
+      <!-- Google Sign-In Button -->
+      <button class="g-signin-button" onclick="signInWithGoogle()">
+        <img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google Icon" />
+        Sign in with Google
+      </button>
+    </div>
+  </div>
+  
+  <!-- Scripts -->
+<script type="module">
+  // Import the functions you need from the SDKs
+  
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    signInWithPopup, 
+    GoogleAuthProvider, 
+    signOut,
+    updateProfile 
+  } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCIXlGCU12BHIZtVzhGAdeeQ7stp1fIL5U", // This should be handled securely in production
+    authDomain: "paws-15ec6.firebaseapp.com",
+    projectId: "paws-15ec6",
+    storageBucket: "paws-15ec6.appspot.com",
+    messagingSenderId: "44965303393",
+    appId: "1:44965303393:web:4274d106e553d6b598c620",
+    measurementId: "G-VGGSS4LBR3"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+
+  // Explicitly set these to the window object so they're available globally
+  window.signInWithGoogle = async function() {
+    try {
+      // Prevent any default behavior
+      event.preventDefault();
+      
+      console.log("Starting Google sign-in process...");
+      
+      // Add scopes if needed
+      googleProvider.addScope('profile');
+      googleProvider.addScope('email');
+      
+      const result = await signInWithPopup(auth, googleProvider);
+      
+      // This gives you a Google Access Token
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      
+      console.log("Google sign-in successful:", user.email);
+      
+      // Get ID token for server authentication
+      const idToken = await user.getIdToken();
+      
+      // Send token to your backend
+      await sendTokenToBackend(idToken, user.displayName, user.email);
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+      alert("Google sign-in failed: " + error.message);
+    }
+  };
+  
+  window.signOutUser = async function() {
+    try {
+      await signOut(auth);
+      
+      // Send logout request to backend
+      await fetch('/logout', {
+        method: 'POST',
+        credentials: 'same-origin'
+      });
+      
+      console.log("User signed out successfully");
+      
+      // Reload page after logout
+      window.location.reload();
+    } catch (error) {
+      console.error("Sign-out error:", error);
+      alert("Error signing out. Please try again.");
+    }
+  };
+  
+  window.signInWithEmail = async function(email, password) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      const idToken = await user.getIdToken();
+      
+      // Send token to backend
+      await sendTokenToBackend(idToken, user.displayName, user.email);
+    } catch (error) {
+      console.error("Email sign-in error:", error);
+      
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+        showAuthError("login-password-error", "Invalid email or password");
+      } else {
+        showAuthError("login-email-error", error.message);
+      }
+    }
+  };
+  
+  window.signUpWithEmail = async function(username, email, password) {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      // Update profile with username
+      await updateProfile(user, { displayName: username });
+      
+      const idToken = await user.getIdToken();
+      
+      // Send token to backend
+      await sendTokenToBackend(idToken, username, email);
+    } catch (error) {
+      console.error("Sign-up error:", error);
+      
+      if (error.code === 'auth/email-already-in-use') {
+        showAuthError("signup-email-error", "Email already in use");
+      } else if (error.code === 'auth/weak-password') {
+        showAuthError("signup-password-error", "Password is too weak");
+      } else {
+        showAuthError("signup-email-error", error.message);
+      }
+    }
+  };
+
+  // Function to send token to backend
+  async function sendTokenToBackend(idToken, displayName, email) {
+    try {
+      console.log("Sending token to backend...");
+      
+      const response = await fetch('/auth/firebase-login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          idToken,
+          displayName, 
+          email 
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        console.log("Authentication successful, redirecting...");
+        // Redirect to profile or reload page
+        window.location.href = "/profile";
+      } else {
+        console.error("Authentication failed:", data.message);
+        showAuthError("login-email-error", data.message || "Authentication failed");
+      }
+    } catch (error) {
+      console.error("Error sending token to backend:", error);
+      showAuthError("login-email-error", "Server error. Please try again later.");
+    }
+  }
+
+  // Set up Firebase auth state observer
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      console.log("User is signed in:", user.email);
+    } else {
+      console.log("User is signed out");
+    }
+  });
+</script>
+
+<!-- Update the form handlers in the script -->
+<script>
+  // Authentication UI functions
+  function openModal() {
+    document.getElementById('auth-modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('auth-modal').style.display = 'none';
+    clearAuthErrors();
+  }
+
+  function toggleAuthForms(formToShow) {
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const modalTitle = document.getElementById('modal-title');
+    
+    clearAuthErrors();
+    
+    if (formToShow === 'signup') {
+      loginForm.classList.add('hidden');
+      signupForm.classList.remove('hidden');
+      modalTitle.textContent = 'Sign Up';
+    } else {
+      signupForm.classList.add('hidden');
+      loginForm.classList.remove('hidden');
+      modalTitle.textContent = 'Login';
+    }
+  }
+
+  function showAuthError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.remove('hidden');
+    } else {
+      console.error("Error element not found:", elementId);
+      alert(message); // Fallback to alert if element not found
+    }
+  }
+
+  function clearAuthErrors() {
+    const errorElements = document.querySelectorAll('.form-error');
+    errorElements.forEach(el => {
+      el.textContent = '';
+      el.classList.add('hidden');
+    });
+  }
+
+  // Set up form submit handlers after DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Login form handler
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearAuthErrors();
+        
+        const email = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value;
+        
+        if (!email) {
+          showAuthError('login-email-error', 'Email is required');
+          return;
+        }
+        
+        if (!password) {
+          showAuthError('login-password-error', 'Password is required');
+          return;
+        }
+        
+        await window.signInWithEmail(email, password);
+      });
+    }
+    
+    // Signup form handler
+    const signupForm = document.getElementById('signup-form');
+    if (signupForm) {
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearAuthErrors();
+        
+        const username = document.getElementById('signup-username').value.trim();
+        const email = document.getElementById('signup-email').value.trim();
+        const password = document.getElementById('signup-password').value;
+        
+        if (!username) {
+          showAuthError('signup-username-error', 'Username is required');
+          return;
+        }
+        
+        if (!email) {
+          showAuthError('signup-email-error', 'Email is required');
+          return;
+        }
+        
+        if (!password) {
+          showAuthError('signup-password-error', 'Password is required');
+          return;
+        }
+        
+        if (password.length < 8) {
+          showAuthError('signup-password-error', 'Password must be at least 8 characters');
+          return;
+        }
+        
+        await window.signUpWithEmail(username, email, password);
+      });
+    }
+  });
+</script>
+  <script>
+    // Authentication UI functions
+    function openModal() {
+      document.getElementById('auth-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('auth-modal').style.display = 'none';
+      clearAuthErrors();
+    }
+
+    function toggleAuthForms(formToShow) {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      const modalTitle = document.getElementById('modal-title');
+      
+      clearAuthErrors();
+      
+      if (formToShow === 'signup') {
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+        modalTitle.textContent = 'Sign Up';
+      } else {
+        signupForm.classList.add('hidden');
+        loginForm.classList.remove('hidden');
+        modalTitle.textContent = 'Login';
+      }
+    }
+
+    function showAuthError(elementId, message) {
+      const errorElement = document.getElementById(elementId);
+      errorElement.textContent = message;
+      errorElement.classList.remove('hidden');
+    }
+
+    function clearAuthErrors() {
+      const errorElements = document.querySelectorAll('.form-error');
+      errorElements.forEach(el => {
+        el.textContent = '';
+        el.classList.add('hidden');
+      });
+    }
+
+    // Set up form submit handlers
+    document.addEventListener('DOMContentLoaded', () => {
+      // Login form handler
+      document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearAuthErrors();
+        
+        const email = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value;
+        
+        if (!email) {
+          showAuthError('login-email-error', 'Email is required');
+          return;
+        }
+        
+        if (!password) {
+          showAuthError('login-password-error', 'Password is required');
+          return;
+        }
+        
+        await window.firebaseAuth.signInWithEmail(email, password);
+      });
+      
+      // Signup form handler
+      document.getElementById('signup-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        clearAuthErrors();
+        
+        const username = document.getElementById('signup-username').value.trim();
+        const email = document.getElementById('signup-email').value.trim();
+        const password = document.getElementById('signup-password').value;
+        
+        if (!username) {
+          showAuthError('signup-username-error', 'Username is required');
+          return;
+        }
+        
+        if (!email) {
+          showAuthError('signup-email-error', 'Email is required');
+          return;
+        }
+        
+        if (!password) {
+          showAuthError('signup-password-error', 'Password is required');
+          return;
+        }
+        
+        if (password.length < 8) {
+          showAuthError('signup-password-error', 'Password must be at least 8 characters');
+          return;
+        }
+        
+        await window.firebaseAuth.signUpWithEmail(username, email, password);
+      });
+    });
+
+    // Global authentication functions
+    function signInWithGoogle() {
+      window.firebaseAuth.signInWithGoogle();
+    }
+
+    function signOutUser() {
+      window.firebaseAuth.signOut();
+    }
+    // Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.getElementById('hamburger-menu');
+  const mainNav = document.getElementById('main-nav');
+  
+  if (hamburger && mainNav) {
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      mainNav.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+          hamburger.classList.remove('active');
+          mainNav.classList.remove('active');
+        }
+      });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const isClickInsideNav = mainNav.contains(event.target);
+      const isClickOnHamburger = hamburger.contains(event.target);
+      
+      if (!isClickInsideNav && !isClickOnHamburger && mainNav.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        mainNav.classList.remove('active');
+      }
+    });
+  }
+});
+  </script>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>
-

@@ -1,237 +1,1134 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Dog Nutrition Guide - PAWS{% endblock %}
-
-{% block content %}
-<div class="page-header">
-    <h1>Nutrition Guide</h1>
-    <p>Discover the best diet plans and food recommendations for your dog</p>
-</div>
-
-<section class="content-section">
-    <h2>Nutrition Basics</h2>
-    <div class="nutrition-grid">
-        <div class="nutrition-card">
-            <h3>Proteins</h3>
-            <p>Essential for muscle development and repair. Learn about quality protein sources for your dog.</p>
-            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
-        </div>
-        <div class="nutrition-card">
-            <h3>Fats</h3>
-            <p>Provides energy and supports cell growth. Discover healthy fat sources for your dog's diet.</p>
-            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
-        </div>
-        <div class="nutrition-card">
-            <h3>Carbohydrates</h3>
-            <p>Supplies energy and supports digestive health. Find out which carbs are best for dogs.</p>
-            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
-        </div>
-        <div class="nutrition-card">
-            <h3>Vitamins & Minerals</h3>
-            <p>Essential for overall health and immune function. Learn about key micronutrients.</p>
-            <a href="#" class="paw-button">Learn More <span class="paw-icon">🐾</span></a>
-        </div>
-    </div>
-</section>
-
-<div class="paw-divider">
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-</div>
-
-<section class="content-section">
-    <h2>Feeding Guides</h2>
-    <div class="feeding-calculator">
-        <h3>Portion Calculator</h3>
-        <p>Find out how much to feed your dog based on their weight, age, and activity level.</p>
-        <form class="calculator-form">
-            <div class="form-group">
-                <label for="dogWeight">Dog's Weight (lbs)</label>
-                <input type="number" id="dogWeight" class="animated-input" required>
-            </div>
-            <div class="form-group">
-                <label for="dogAge">Dog's Age</label>
-                <select id="dogAge" class="animated-input" required>
-                    <option value="">Select Age</option>
-                    <option value="puppy">Puppy (under 1 year)</option>
-                    <option value="adult">Adult (1-7 years)</option>
-                    <option value="senior">Senior (8+ years)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="activityLevel">Activity Level</label>
-                <select id="activityLevel" class="animated-input" required>
-                    <option value="">Select Activity Level</option>
-                    <option value="low">Low (mostly inactive)</option>
-                    <option value="moderate">Moderate (daily walks)</option>
-                    <option value="high">High (very active)</option>
-                </select>
-            </div>
-            <button type="submit" class="paw-button">Calculate <span class="paw-icon">🐾</span></button>
-        </form>
-        <div id="calculationResult" class="calculation-result"></div>
-    </div>
-</section>
-
-<div class="paw-divider">
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-    <div class="paw-print"></div>
-</div>
-
-<section class="content-section">
-    <h2>Special Diets</h2>
-    <div class="special-diets-grid">
-        <div class="diet-card">
-            <h3>Grain-Free</h3>
-            <p>Learn about grain-free diets, their benefits, and potential concerns.</p>
-            <a href="#" class="paw-button">Read More <span class="paw-icon">🐾</span></a>
-        </div>
-        <div class="diet-card">
-            <h3>Raw Food</h3>
-            <p>Discover the pros and cons of raw food diets and how to safely implement them.</p>
-            <a href="#" class="paw-button">Read More <span class="paw-icon">🐾</span></a>
-        </div>
-        <div class="diet-card">
-            <h3>Prescription Diets</h3>
-            <p>Information on specialized diets for dogs with health conditions.</p>
-            <a href="#" class="paw-button">Read More <span class="paw-icon">🐾</span></a>
-        </div>
-        <div class="diet-card">
-            <h3>Homemade Meals</h3>
-            <p>Guidelines for preparing balanced homemade meals for your dog.</p>
-            <a href="#" class="paw-button">Read More <span class="paw-icon">🐾</span></a>
-        </div>
-    </div>
-</section>
-{% endblock %}
+{% block title %}Dog Nutrition Hub - PAWS{% endblock %}
 
 {% block extra_css %}
 <style>
-    .page-header {
-        text-align: center;
-        padding: 3rem 1rem;
-        background-color: var(--secondary-bg);
-        margin-bottom: 2rem;
-        border-radius: var(--border-radius);
+  /* Color Scheme */
+  :root {
+    --primary-bg: #f9ff8c;
+    --primary-light: #ffffb0;
+    --primary-dark: #e6eb79;
+    --secondary-bg: #ffffff;
+    --primary-text: #333333;
+    --secondary-text: #666666;
+    --accent-orange: #ff9d5c;
+    --accent-blue: #5cb8ff;
+    --accent-purple: #b45cff;
+    --accent-green: #5cff9d;
+    --accent-brown: #a67c52;
+    --accent-gray: #cccccc;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --border-radius: 20px;
+    --transition: all 0.3s ease;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(rgba(249, 255, 140, 0.9), rgba(230, 235, 121, 0.8)), url('/api/placeholder/1200/500') center/cover;
+    color: var(--primary-text);
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    animation: fadeInUp 1.2s ease;
+  }
+  
+  .paw-floater {
+    position: absolute;
+    opacity: 0.2;
+    transform: rotate(45deg);
+    font-size: 2rem;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  /* Section Styling */
+  .section {
+    margin: 4rem 0;
+    animation: fadeIn 1s ease;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.2rem;
+    color: var(--primary-text);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+  
+  .section-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: var(--accent-orange);
+    border-radius: 2px;
+  }
+  
+  .section-header p {
+    color: var(--secondary-text);
+    max-width: 800px;
+    margin: 1rem auto;
+  }
+  
+  /* Nutritional Elements Section */
+  .nutrition-circles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+  
+  .nutrition-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nutrition-circle h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    z-index: 2;
+  }
+  
+  .nutrition-circle p {
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .nutrition-circle:hover p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .nutrition-circle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: var(--transition);
+  }
+  
+  .nutrition-circle:hover::before {
+    opacity: 1;
+  }
+  
+  .nutrition-circle.protein { background: linear-gradient(135deg, var(--accent-orange), #e35d5b); }
+  .nutrition-circle.fats { background: linear-gradient(135deg, var(--accent-green), #7cb342); }
+  .nutrition-circle.carbs { background: linear-gradient(135deg, var(--accent-orange), #ffb74d); }
+  .nutrition-circle.vitamins { background: linear-gradient(135deg, var(--accent-blue), #5c6bc0); }
+  .nutrition-circle.hydration { background: linear-gradient(135deg, var(--accent-blue), #4fc3f7); }
+  
+  /* Feeding Calculator */
+  .calculator-section {
+    background-color: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px var(--shadow);
+    padding: 2rem;
+    margin: 4rem 0;
+  }
+  
+  .calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .calculator-title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .calculator-title h2 {
+    color: var(--primary-text);
+  }
+  
+  .calculator-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-text);
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--accent-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-dark);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(230, 235, 121, 0.2);
+  }
+  
+  .btn {
+    background-color: var(--accent-orange);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn:hover {
+    background-color: #e68a47;
+    transform: translateY(-2px);
+  }
+  
+  .btn .paw-icon {
+    margin-left: 0.5rem;
+  }
+  
+  .calculator-actions {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .calculator-result {
+    background-color: rgba(249, 255, 140, 0.2);
+    border: 2px solid rgba(249, 255, 140, 0.4);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+    display: none;
+  }
+  
+  .calculator-result.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .result-amount {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-text);
+    margin: 1rem 0;
+  }
+  
+  /* Food Comparison Tool */
+  .food-comparison {
+    background-color: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px var(--shadow);
+    padding: 2rem;
+    margin: 4rem 0;
+  }
+  
+  .comparison-tool {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .food-option {
+    border: 2px solid var(--accent-gray);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  
+  .food-option:hover {
+    border-color: var(--primary-dark);
+    transform: translateY(-5px);
+  }
+  
+  .food-option.active {
+    border-color: var(--primary-dark);
+    background-color: rgba(249, 255, 140, 0.05);
+  }
+  
+  .food-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .food-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .food-details {
+    margin-top: 2rem;
+    display: none;
+  }
+  
+  .food-details.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .nutrition-bars {
+    margin-top: 1.5rem;
+  }
+  
+  .nutrition-bar {
+    margin-bottom: 1rem;
+  }
+  
+  .bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+  }
+  
+  .bar-container {
+    height: 12px;
+    background-color: var(--accent-gray);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 1s ease;
+  }
+  
+  .protein-bar { background-color: var(--accent-orange); }
+  .fat-bar { background-color: var(--accent-green); }
+  .carb-bar { background-color: #fb8c00; }
+  .fiber-bar { background-color: var(--accent-brown); }
+  
+  /* Life Stage Nutrition */
+  .age-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--accent-gray);
+  }
+  
+  .age-tab {
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--secondary-text);
+    position: relative;
+    transition: var(--transition);
+  }
+  
+  .age-tab::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-dark);
+    transform: scaleX(0);
+    transition: var(--transition);
+  }
+  
+  .age-tab:hover {
+    color: var(--primary-text);
+  }
+  
+  .age-tab.active {
+    color: var(--primary-text);
+  }
+  
+  .age-tab.active::after {
+    transform: scaleX(1);
+  }
+  
+  .age-content {
+    display: none;
+  }
+  
+  .age-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .age-content h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-text);
+  }
+  
+  .nutrition-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .tip-card {
+    background-color: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px var(--shadow);
+    padding: 1.5rem;
+    transition: var(--transition);
+  }
+  
+  .tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow);
+  }
+  
+  .tip-card h4 {
+    color: var(--primary-text);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .tip-card h4 span {
+    margin-right: 0.5rem;
+  }
+  
+  /* FAQ Section */
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-item {
+    border-bottom: 1px solid var(--accent-gray);
+  }
+  
+  .faq-question {
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .faq-question:hover {
+    color: var(--accent-orange);
+  }
+  
+  .faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .faq-answer p {
+    padding-bottom: 1.5rem;
+  }
+  
+  .faq-answer.open {
+    max-height: 500px;
+  }
+  
+  .faq-toggle {
+    transition: transform 0.3s ease;
+  }
+  
+  .faq-toggle.open {
+    transform: rotate(45deg);
+  }
+  
+  /* Health Warning Section */
+  .health-warning {
+    background-color: rgba(255, 157, 92, 0.1);
+    border-left: 4px solid var(--accent-orange);
+    padding: 1.5rem;
+    margin: 3rem 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  }
+  
+  .health-warning h3 {
+    color: #e68a47;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) rotate(45deg);
+    }
+    50% {
+      transform: translate(15px, 15px) rotate(45deg);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.2rem;
     }
     
-    .nutrition-grid, .special-diets-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 2rem;
-        margin: 2rem 0;
+    .nutrition-circles {
+      gap: 1rem;
     }
     
-    .nutrition-card, .diet-card {
-        background-color: var(--secondary-bg);
-        padding: 1.5rem;
-        border-radius: var(--border-radius);
-        box-shadow: 0 5px 15px var(--shadow);
-        transition: var(--transition);
+    .nutrition-circle {
+      width: 150px;
+      height: 150px;
     }
     
-    .nutrition-card:hover, .diet-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px var(--shadow);
+    .age-tabs {
+      flex-direction: column;
+      align-items: center;
     }
     
-    .feeding-calculator {
-        background-color: var(--secondary-bg);
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        margin: 2rem 0;
+    .age-tab {
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
     }
-    
-    .calculator-form {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin: 1.5rem 0;
-    }
-    
-    .calculator-form button {
-        grid-column: 1 / -1;
-        width: max-content;
-        justify-self: center;
-    }
-    
-    .calculation-result {
-        margin-top: 1.5rem;
-        padding: 1rem;
-        background-color: rgba(92, 184, 255, 0.1);
-        border-radius: var(--border-radius);
-        display: none;
-    }
-    
-    .calculation-result.show {
-        display: block;
-    }
-    
-    @media (max-width: 768px) {
-        .nutrition-grid, .special-diets-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .calculator-form {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>
 {% endblock %}
 
-{% block extra_js %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const calculatorForm = document.querySelector('.calculator-form');
-        const calculationResult = document.getElementById('calculationResult');
+{% block content %}
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Pawfect Nutrition</h1>
+    <p>Give your dog the gift of optimal health through balanced nutrition. Our comprehensive guide helps you make informed choices about your furry friend's diet.</p>
+  </section>
+  
+  <!-- Nutritional Elements Section -->
+  <div class="container">
+    <section class="section">
+      <div class="section-header">
+        <h2>Essential Nutrients</h2>
+        <p>Understanding the key nutritional elements is crucial for your dog's health and longevity. Hover over each nutrient to learn more.</p>
+      </div>
+      
+      <div class="nutrition-circles">
+        <div class="nutrition-circle protein">
+          <h3>Proteins</h3>
+          <p>Building blocks for muscles, organs, and immune system. Dogs need animal-based proteins like chicken, beef, and fish.</p>
+        </div>
+        <div class="nutrition-circle fats">
+          <h3>Fats</h3>
+          <p>Provides energy and supports brain health. Look for omega-3 and omega-6 fatty acids for a shiny coat.</p>
+        </div>
+        <div class="nutrition-circle carbs">
+          <h3>Carbohydrates</h3>
+          <p>Energy source found in grains, vegetables, and legumes. Provides fiber for digestive health.</p>
+        </div>
+        <div class="nutrition-circle vitamins">
+          <h3>Vitamins & Minerals</h3>
+          <p>Essential for metabolism, bone growth, and immune function. A balanced diet should provide all necessary micronutrients.</p>
+        </div>
+        <div class="nutrition-circle hydration">
+          <h3>Hydration</h3>
+          <p>Clean water is essential for digestion, temperature regulation, and organ function. Always provide fresh water.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Feeding Calculator Section -->
+    <section class="calculator-section">
+      <div class="calculator-container">
+        <div class="calculator-title">
+          <h2>Portion Calculator</h2>
+          <p>Find the perfect portion size for your dog based on their unique characteristics</p>
+        </div>
         
-        if (calculatorForm) {
-            calculatorForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const weight = parseFloat(document.getElementById('dogWeight').value);
-                const age = document.getElementById('dogAge').value;
-                const activity = document.getElementById('activityLevel').value;
-                
-                let baseAmount = 0;
-                
-                // Simple calculation logic
-                if (age === 'puppy') {
-                    baseAmount = weight * 0.05; // 5% of body weight for puppies
-                } else if (age === 'adult') {
-                    baseAmount = weight * 0.025; // 2.5% for adults
-                } else if (age === 'senior') {
-                    baseAmount = weight * 0.02; // 2% for seniors
-                }
-                
-                // Adjust for activity level
-                if (activity === 'low') {
-                    baseAmount *= 0.8;
-                } else if (activity === 'high') {
-                    baseAmount *= 1.2;
-                }
-                
-                // Round to 1 decimal place
-                baseAmount = Math.round(baseAmount * 10) / 10;
-                
-                // Display result
-                calculationResult.innerHTML = `
-                    <h4>Recommended Daily Feeding Amount</h4>
-                    <p>Your dog should eat approximately <strong>${baseAmount} cups</strong> of dry food per day.</p>
-                    <p>This can be divided into 2-3 meals throughout the day.</p>
-                    <p><em>Note: This is a general guideline. Consult with your veterinarian for personalized recommendations.</em></p>
-                `;
-                
-                calculationResult.classList.add('show');
-            });
+        <form id="calculatorForm" class="calculator-form">
+          <div class="form-group">
+            <label for="dogWeight">Dog's Weight (lbs)</label>
+            <input type="number" id="dogWeight" class="form-control" min="1" max="200" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="dogAge">Dog's Life Stage</label>
+            <select id="dogAge" class="form-control" required>
+              <option value="">Select Life Stage</option>
+              <option value="puppy">Puppy (under 1 year)</option>
+              <option value="adult">Adult (1-7 years)</option>
+              <option value="senior">Senior (8+ years)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="activityLevel">Activity Level</label>
+            <select id="activityLevel" class="form-control" required>
+              <option value="">Select Activity Level</option>
+              <option value="low">Low (mostly inactive)</option>
+              <option value="moderate">Moderate (daily walks)</option>
+              <option value="high">High (very active)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="neutered">Neutered/Spayed</label>
+            <select id="neutered" class="form-control" required>
+              <option value="">Select Option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          
+          <div class="calculator-actions">
+            <button type="submit" class="btn">Calculate Portion <span class="paw-icon">🐾</span></button>
+          </div>
+        </form>
+        
+        <div id="calculatorResult" class="calculator-result">
+          <h3>Your Dog's Daily Portion</h3>
+          <div class="result-amount"><span id="foodAmount">0</span> cups</div>
+          <p>This amount should be divided into <span id="mealCount">2-3</span> meals per day.</p>
+          <p><strong>Calorie Estimate:</strong> <span id="calorieEstimate">0</span> kcal/day</p>
+          <p class="note"><em>Note: This is a general guideline. Consult with your veterinarian for personalized recommendations.</em></p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Food Comparison Tool -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Food Type Comparison</h2>
+        <p>Compare different types of dog food to find what's best for your furry friend</p>
+      </div>
+      
+      <div class="food-comparison">
+        <div class="comparison-tool">
+          <div class="food-option" data-food="kibble">
+            <div class="food-icon">🥫</div>
+            <div class="food-title">Dry Kibble</div>
+            <p>Convenient, shelf-stable, and helps with dental health</p>
+          </div>
+          
+          <div class="food-option" data-food="wet">
+            <div class="food-icon">🍲</div>
+            <div class="food-title">Wet Food</div>
+            <p>Higher moisture content and often more palatable</p>
+          </div>
+          
+          <div class="food-option" data-food="raw">
+            <div class="food-icon">🥩</div>
+            <div class="food-title">Raw Diet</div>
+            <p>Minimally processed with natural enzymes intact</p>
+          </div>
+          
+          <div class="food-option" data-food="homemade">
+            <div class="food-icon">🍳</div>
+            <div class="food-title">Homemade</div>
+            <p>Complete control over ingredients and preparation</p>
+          </div>
+        </div>
+        
+        <div id="foodDetails" class="food-details">
+          <h3 id="foodTitle">Select a food type above</h3>
+          <p id="foodDescription"></p>
+          
+          <div class="nutrition-bars">
+            <div class="nutrition-bar">
+              <div class="bar-label">
+                <span>Protein</span>
+                <span id="proteinPercentage">0%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill protein-bar" style="width: 0%"></div>
+              </div>
+            </div>
+            
+            <div class="nutrition-bar">
+              <div class="bar-label">
+                <span>Fat</span>
+                <span id="fatPercentage">0%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill fat-bar" style="width: 0%"></div>
+              </div>
+            </div>
+            
+            <div class="nutrition-bar">
+              <div class="bar-label">
+                <span>Carbohydrates</span>
+                <span id="carbPercentage">0%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill carb-bar" style="width: 0%"></div>
+              </div>
+            </div>
+            
+            <div class="nutrition-bar">
+              <div class="bar-label">
+                <span>Fiber</span>
+                <span id="fiberPercentage">0%</span>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill fiber-bar" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div id="foodPros" class="food-pros-cons">
+            <h4>Advantages</h4>
+            <ul id="prosList"></ul>
+          </div>
+          
+          <div id="foodCons" class="food-pros-cons">
+            <h4>Considerations</h4>
+            <ul id="consList"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Life Stage Nutrition -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Life Stage Nutrition</h2>
+        <p>Your dog's nutritional needs change throughout their life. Learn what's best at each stage.</p>
+      </div>
+      
+      <div class="age-tabs">
+        <div class="age-tab active" data-age="puppy">Puppy</div>
+        <div class="age-tab" data-age="adult">Adult</div>
+        <div class="age-tab" data-age="senior">Senior</div>
+      </div>
+      
+      <div class="age-content active" id="puppy-content">
+        <h3>Puppy Nutrition (0-12 months)</h3>
+        <p>Puppies need nutrient-dense food to support their rapid growth and development. Their diet should be higher in protein, fat, and certain minerals compared to adult dogs.</p>
+        
+        <div class="nutrition-tips">
+          <div class="tip-card">
+            <h4><span>🧠</span> Brain Development</h4>
+            <p>Look for DHA (docosahexaenoic acid) which supports brain and vision development during the critical first year.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h4><span>🦴</span> Bone Growth</h4>
+            <p>Proper calcium-to-phosphorus ratio is essential for healthy bone development. Too much calcium can be harmful, especially for large breeds.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h4><span>⏰</span> Feeding Schedule</h4>
+            <p>Feed puppies 3-4 times per day until 6 months of age, then transition to 2-3 meals daily.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="age-content" id="adult-content">
+        <h3>Adult Nutrition (1-7 years)</h3>
+        <p>Adult dogs need balanced nutrition to maintain their health and energy levels. Their metabolic rate stabilizes, so portion control becomes important to prevent weight gain.</p>
+        
+        <div class="nutrition-tips">
+          <div class="tip-card">
+            <h4><span>⚖️</span> Weight Management</h4>
+            <p>Monitor your dog's body condition regularly and adjust portions to maintain ideal weight. Obesity can lead to numerous health problems.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h4><span>🏃</span> Activity Matching</h4>
+            <p>Match calorie intake to activity level. Working and sporting dogs need more calories than less active companions.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h4><span>🦷</span> Dental Health</h4>
+            <p>Consider dental health when choosing food. Dry kibble and dental chews can help reduce plaque buildup.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="age-content" id="senior-content">
+        <h3>Senior Nutrition (8+ years)</h3>
+        <p>Senior dogs often have decreased energy requirements but need high-quality, easily digestible nutrients to support aging body systems and manage chronic conditions.</p>
+        
+        <div class="nutrition-tips">
+          <div class="tip-card">
+            <h4><span>🔄</span> Metabolic Changes</h4>
+            <p>Senior dogs typically need fewer calories but higher quality protein to maintain muscle mass as they age.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h4><span>🌿</span> Joint Support</h4>
+            <p>Look for foods with glucosamine, chondroitin, and omega-3 fatty acids to support joint health and mobility.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h4><span>🫀</span> Heart Health</h4>
+            <p>Consider foods with lower sodium levels and L-carnitine to support heart function in aging dogs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Health Warning Section -->
+    <div class="health-warning">
+      <h3>⚠️ Foods to Avoid</h3>
+      <p>Some human foods can be toxic to dogs. Never feed your dog: chocolate, grapes/raisins, onions, garlic, xylitol (found in sugar-free products), alcohol, caffeine, macadamia nuts, or raw dough.</p>
+      <p>Always research before sharing human food with your pet, and consult your veterinarian if you suspect your dog has consumed something toxic.</p>
+    </div>
+    
+    <!-- FAQ Section -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Nutrition FAQs</h2>
+        <p>Common questions about dog nutrition answered by experts</p>
+      </div>
+      
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            Is grain-free food better for my dog?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Not necessarily. The FDA is investigating potential links between grain-free diets and dilated cardiomyopathy (DCM) in dogs. Unless your dog has a specific grain allergy (which is rare), there's no proven benefit to
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            How often should I feed my adult dog?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Most adult dogs do well with two meals per day, spaced about 12 hours apart. Some very active dogs may benefit from an additional small meal. Consistent feeding times help with digestion and house training. Avoid free-feeding (leaving food out all day) as it can lead to obesity and makes it harder to monitor food intake.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Should I feed my dog raw food?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Raw diets are controversial. While some owners report benefits like improved coat and energy levels, raw diets carry risks of bacterial contamination (E. coli, Salmonella) that can affect both dogs and humans in the household. If you choose a raw diet, work with a veterinary nutritionist to ensure it's nutritionally complete and follow strict food safety protocols.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            How can I tell if my dog is at a healthy weight?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>You should be able to feel your dog's ribs without pressing hard, but they shouldn't be prominently visible. Looking from above, your dog should have a visible waist. From the side, the abdomen should tuck up from the ribcage to the hindquarters. If you can't feel the ribs or there's no waist definition, your dog may be overweight. Consult your vet for personalized weight management advice.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            Are supplements necessary for my dog?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>A high-quality, complete and balanced commercial dog food should provide all the nutrients your dog needs. Unnecessary supplementation can cause imbalances or toxicity. However, certain conditions or life stages might benefit from specific supplements as recommended by your veterinarian. Always consult your vet before adding any supplements to your dog's diet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <script>
+    // Calculator Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const calculatorForm = document.getElementById('calculatorForm');
+      const calculatorResult = document.getElementById('calculatorResult');
+      
+      if (calculatorForm) {
+        calculatorForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const weight = parseFloat(document.getElementById('dogWeight').value);
+          const age = document.getElementById('dogAge').value;
+          const activity = document.getElementById('activityLevel').value;
+          const neutered = document.getElementById('neutered').value;
+          
+          let baseAmount = 0;
+          let calorieEstimate = 0;
+          let mealCount = "2-3";
+          
+          // Calculate base amount based on weight and age
+          if (age === 'puppy') {
+            baseAmount = weight * 0.05; // 5% of body weight for puppies
+            calorieEstimate = Math.round(weight * 40 * 3); // Puppies need more calories
+            mealCount = "3-4";
+          } else if (age === 'adult') {
+            baseAmount = weight * 0.025; // 2.5% for adults
+            calorieEstimate = Math.round(weight * 30);
+          } else if (age === 'senior') {
+            baseAmount = weight * 0.02; // 2% for seniors
+            calorieEstimate = Math.round(weight * 25);
+          }
+          
+          // Adjust for activity level
+          if (activity === 'low') {
+            baseAmount *= 0.8;
+            calorieEstimate *= 0.8;
+          } else if (activity === 'high') {
+            baseAmount *= 1.2;
+            calorieEstimate *= 1.2;
+          }
+          
+          // Adjust for neutered/spayed status
+          if (neutered === 'yes') {
+            baseAmount *= 0.9;
+            calorieEstimate *= 0.9;
+          }
+          
+          // Round to 1 decimal place
+          baseAmount = Math.round(baseAmount * 10) / 10;
+          calorieEstimate = Math.round(calorieEstimate);
+          
+          // Display results
+          document.getElementById('foodAmount').textContent = baseAmount;
+          document.getElementById('calorieEstimate').textContent = calorieEstimate;
+          document.getElementById('mealCount').textContent = mealCount;
+          
+          calculatorResult.classList.add('show');
+        });
+      }
+      
+      // Food Comparison Tool
+      const foodOptions = document.querySelectorAll('.food-option');
+      const foodDetails = document.getElementById('foodDetails');
+      
+      const foodData = {
+        kibble: {
+          title: "Dry Kibble",
+          description: "Dry kibble is the most common form of commercial dog food. It's convenient, has a long shelf life, and comes in various formulations for different life stages and health conditions.",
+          protein: 25,
+          fat: 15,
+          carbs: 50,
+          fiber: 5,
+          pros: [
+            "Convenient and easy to store",
+            "Cost-effective option",
+            "Helps reduce dental plaque",
+            "Long shelf life",
+            "Wide variety of formulations available"
+          ],
+          cons: [
+            "Lower moisture content",
+            "May contain more fillers and preservatives",
+            "Some dogs find it less palatable",
+            "Processing may reduce some nutrient values"
+          ]
+        },
+        wet: {
+          title: "Wet Food",
+          description: "Wet or canned dog food has high moisture content and is often more aromatic and palatable for dogs. It comes in cans, pouches, or trays.",
+          protein: 30,
+          fat: 20,
+          carbs: 35,
+          fiber: 3,
+          pros: [
+            "Higher moisture content (70-85%)",
+            "More palatable for picky eaters",
+            "Easier to chew for seniors or dogs with dental issues",
+            "Often contains fewer preservatives",
+            "Higher protein content by volume"
+          ],
+          cons: [
+            "More expensive than kibble",
+            "Shorter shelf life once opened",
+            "Doesn't help with dental health",
+            "Higher environmental impact (packaging)",
+            "Can be messy"
+          ]
+        },
+        raw: {
+          title: "Raw Diet",
+          description: "Raw diets typically consist of uncooked meat, bones, organs, and some vegetables. They aim to mimic what dogs might eat in the wild.",
+          protein: 40,
+          fat: 35,
+          carbs: 15,
+          fiber: 2,
+          pros: [
+            "Minimal processing",
+            "No artificial preservatives or additives",
+            "May improve coat condition and energy levels",
+            "Can be tailored to individual needs",
+            "Higher digestibility for some dogs"
+          ],
+          cons: [
+            "Risk of bacterial contamination",
+            "Expensive and time-consuming",
+            "May be nutritionally incomplete without careful planning",
+            "Storage challenges (freezer space)",
+            "Not recommended for immunocompromised households"
+          ]
+        },
+        homemade: {
+          title: "Homemade Food",
+          description: "Homemade dog food allows complete control over ingredients and preparation methods. It can range from cooked to partially raw depending on preference.",
+          protein: 35,
+          fat: 25,
+          carbs: 30,
+          fiber: 4,
+          pros: [
+            "Complete control over ingredients",
+            "No preservatives or fillers",
+            "Can be adapted for allergies or sensitivities",
+            "Often highly palatable",
+            "Can include fresh, human-grade ingredients"
+          ],
+          cons: [
+            "Risk of nutritional imbalances without expert guidance",
+            "Time-consuming to prepare",
+            "More expensive than commercial options",
+            "Requires knowledge of canine nutrition",
+            "Shorter shelf life"
+          ]
         }
+      };
+      
+      foodOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          const foodType = this.getAttribute('data-food');
+          const data = foodData[foodType];
+          
+          // Remove active class from all options
+          foodOptions.forEach(opt => opt.classList.remove('active'));
+          
+          // Add active class to clicked option
+          this.classList.add('active');
+          
+          // Update food details content
+          document.getElementById('foodTitle').textContent = data.title;
+          document.getElementById('foodDescription').textContent = data.description;
+          
+          // Update nutrition bars
+          document.getElementById('proteinPercentage').textContent = data.protein + '%';
+          document.getElementById('fatPercentage').textContent = data.fat + '%';
+          document.getElementById('carbPercentage').textContent = data.carbs + '%';
+          document.getElementById('fiberPercentage').textContent = data.fiber + '%';
+          
+          document.querySelector('.protein-bar').style.width = data.protein + '%';
+          document.querySelector('.fat-bar').style.width = data.fat + '%';
+          document.querySelector('.carb-bar').style.width = data.carbs + '%';
+          document.querySelector('.fiber-bar').style.width = data.fiber + '%';
+          
+          // Update pros and cons lists
+          const prosList = document.getElementById('prosList');
+          const consList = document.getElementById('consList');
+          
+          prosList.innerHTML = '';
+          consList.innerHTML = '';
+          
+          data.pros.forEach(pro => {
+            const li = document.createElement('li');
+            li.textContent = pro;
+            prosList.appendChild(li);
+          });
+          
+          data.cons.forEach(con => {
+            const li = document.createElement('li');
+            li.textContent = con;
+            consList.appendChild(li);
+          });
+          
+          // Show food details
+          foodDetails.classList.add('show');
+        });
+      });
+      
+      // Age Tabs Functionality
+      const ageTabs = document.querySelectorAll('.age-tab');
+      const ageContents = document.querySelectorAll('.age-content');
+      
+      ageTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const age = this.getAttribute('data-age');
+          
+          // Remove active class from all tabs and content
+          ageTabs.forEach(t => t.classList.remove('active'));
+          ageContents.forEach(c => c.classList.remove('active'));
+          
+          // Add active class to clicked tab and corresponding content
+          this.classList.add('active');
+          document.getElementById(age + '-content').classList.add('active');
+        });
+      });
+      
+      // FAQ Functionality
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          const answer = this.nextElementSibling;
+          const toggle = this.querySelector('.faq-toggle');
+          
+          // Toggle answer visibility
+          answer.classList.toggle('open');
+          toggle.classList.toggle('open');
+        });
+      });
     });
-</script>
+  </script>
 {% endblock %}
-

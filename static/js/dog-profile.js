@@ -1,6 +1,73 @@
 document.addEventListener("DOMContentLoaded", () => {
   const dogProfileForm = document.getElementById("dogProfileForm")
   const formResponse = document.getElementById("formResponse")
+  const dogProfileModal = document.getElementById("dogProfileModal")
+  const getStartedBtn = document.getElementById("getStartedBtn")
+  const ctaGetStartedBtn = document.getElementById("ctaGetStartedBtn")
+  const closeModalBtn = document.getElementById("closeModalBtn")
+
+  // Modal functions
+  const openModal = () => {
+    // Check if user is logged in before opening modal
+    fetch('/check_auth_status', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.authenticated) {
+        dogProfileModal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      } else {
+        // Show login prompt if not authenticated
+        alert("Please log in to register your dog.");
+        // Optionally open the auth modal instead
+        document.getElementById('auth-modal').style.display = 'block';
+      }
+    })
+    .catch(error => {
+      console.error("Error checking authentication:", error);
+    });
+  };
+
+  const closeModal = () => {
+    dogProfileModal.style.display = "none";
+    document.body.style.overflow = "auto";
+    
+    // Reset form and response
+    if (dogProfileForm) {
+      dogProfileForm.reset();
+      
+      // Reset input styles
+      const inputs = dogProfileForm.querySelectorAll(".animated-input");
+      inputs.forEach(input => {
+        input.parentElement.classList.remove("focused");
+        input.style.borderColor = "";
+        input.style.boxShadow = "";
+      });
+      
+      // Hide response message if visible
+      if (formResponse) {
+        formResponse.style.display = "none";
+        formResponse.textContent = "";
+        formResponse.className = "form-response";
+      }
+    }
+  };
+
+  // Attach event listeners to buttons if they exist
+  if (getStartedBtn) getStartedBtn.addEventListener("click", openModal);
+  if (ctaGetStartedBtn) ctaGetStartedBtn.addEventListener("click", openModal);
+  if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+
+  // Close modal when clicking outside
+  window.addEventListener("click", function(event) {
+    if (event.target === dogProfileModal) {
+      closeModal();
+    }
+  });
 
   if (dogProfileForm) {
     // Add animation to form inputs
@@ -38,13 +105,21 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.disabled = true
       submitButton.style.opacity = "0.7"
 
-      // Get form data
-      const formData = new FormData(this)
+      // Create an object from form data instead of FormData
+      const formData = {
+        name: document.getElementById('dogName').value,
+        breed: document.getElementById('dogBreed').value,
+        age: document.getElementById('dogAge').value,
+        characteristics: document.getElementById('dogCharacteristics').value
+      };
 
-      // Send AJAX request
+      // Send AJAX request with JSON
       fetch("/register_dog", {
         method: "POST",
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -74,6 +149,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Show confetti effect
             showConfetti()
+            
+            // Close modal after successful registration (optional)
+            setTimeout(() => {
+              closeModal();
+            }, 3000);
           } else {
             formResponse.textContent = data.message
             formResponse.className = "form-response error"
@@ -203,7 +283,41 @@ document.addEventListener("DOMContentLoaded", () => {
       40% { transform: translateY(-10px); }
       60% { transform: translateY(-5px); }
     }
+    
+    /* Additional styles for the dog profile modal */
+    #dogProfileModal {
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    #dogProfileModal .modal-content {
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+    }
+    
+    #dogProfileForm {
+      position: relative;
+    }
+    
+    .dog-profile-button {
+      position: relative;
+      overflow: hidden;
+      background-color: #5cb8ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .dog-profile-button:hover {
+      background-color: #4ca8ef;
+      transform: translateY(-2px);
+    }
   `
   document.head.appendChild(style)
 })
-

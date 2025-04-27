@@ -55,6 +55,7 @@ h2 {
   font-size: 2.5rem;
   position: relative;
   display: inline-block;
+  margin-left: 5%;
 }
 
 h2:after {
@@ -99,10 +100,60 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  padding: 1rem 2rem;
+  background-color: white;
 }
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #FF9966; /* match brand color */
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #FF9966;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(135deg, #FF9966, #FF5E62);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #e85c44, #d94a4a);
+}
+
 
 .logo-container {
   display: flex;
@@ -163,9 +214,9 @@ main {
 
 footer {
   background-color: var(--secondary-bg);
-  padding: 3rem 0;
+  padding: 1.5rem 0; /* reduced from 3rem */
   box-shadow: 0 -4px 15px var(--shadow);
-  border-top: 5px solid var(--accent-blue);
+  border-top: 1px solid black;
 }
 
 .footer-content {
@@ -174,68 +225,69 @@ footer {
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
-}
-
-.footer-logo img {
-  height: 50px;
-  border-radius: 10px;
+  padding: 0 15px; /* slightly tighter padding */
+  font-size: larger;
 }
 
 .footer-links h3,
 .footer-contact h3 {
   position: relative;
   display: inline-block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem; /* reduced from 1.5rem */
+  font-size: 1rem; /* slightly smaller font */
 }
 
 .footer-links h3:after,
 .footer-contact h3:after {
   content: "";
   position: absolute;
-  bottom: -5px;
+  bottom: -4px;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 2px;
   background-color: var(--accent-blue);
-  border-radius: 1.5px;
+  border-radius: 1px;
 }
 
 .footer-links ul {
   list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
 .footer-links ul li {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.1rem; /* tighter spacing */
 }
 
 .footer-links ul li a {
   text-decoration: none;
   color: var(--primary-text);
   transition: var(--transition);
-  display: inline-block;
+  font-size: 1rem;
 }
 
 .footer-links ul li a:hover {
   color: var(--accent-blue);
-  transform: translateX(5px);
+  transform: translateX(4px);
 }
 
 .footer-contact p {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.1rem;
   display: flex;
   align-items: center;
+  font-size: 0.9rem;
 }
 
 .footer-contact p:before {
-  content: "🐶";
-  margin-right: 10px;
+  content: "@";
+  margin-right: 8px;
 }
+
 
 .copyright {
   text-align: center;
-  padding-top: 2rem;
-  margin-top: 2rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
   border-top: 1px solid var(--accent-gray);
   max-width: 1200px;
   margin-left: auto;
@@ -247,11 +299,10 @@ footer {
   position: relative;
   padding: 0;
   overflow: hidden;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 0 0 50% 50% / 100px;
   margin-bottom: 4rem;
 }
 
@@ -274,6 +325,7 @@ footer {
   position: relative;
   z-index: 1;
   border-left: 5px solid var(--accent-orange);
+  height: 300px;
 }
 
 .hero-content h1 {
@@ -309,9 +361,9 @@ footer {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  position: relative;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(255, 157, 92, 0.3);
+  height:60px;
 }
 
 
@@ -413,7 +465,7 @@ footer {
 }
 
 .form-container {
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -501,12 +553,13 @@ label {
 /* Feature Cards */
 .features-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr); 
   gap: 2rem;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1400px;
   padding: 0 20px;
 }
+
 
 .feature-card {
   background-color: var(--secondary-bg);
@@ -515,8 +568,10 @@ label {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
   position: relative;
-  display: flex;
+  display: cover;
   flex-direction: column;
+  height:450px;
+  width: 300px;
 }
 
 .feature-card:hover {
@@ -525,7 +580,7 @@ label {
 }
 
 .feature-image {
-  height: 200px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -601,10 +656,15 @@ label {
 }
 
 .testimonials-container {
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0 20px;
+  display: flex;
+  gap: 2rem; /* space between testimonial cards */
+  overflow-x: auto; /* makes it scrollable on smaller screens */
+  scroll-snap-type: x mandatory; /* optional: snap scrolling */
 }
+
 
 .testimonial-card {
   background-color: white;
@@ -613,6 +673,10 @@ label {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
   position: relative;
+  flex: 0 0 auto;
+  scroll-snap-align: start; 
+  max-width: 450px;
+  max-height: 270px;
 }
 
 .testimonial-card:last-child {
@@ -847,3 +911,322 @@ label {
   }
 }
 
+.modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  height: 750px;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #444;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+.cta-carousel-section {
+  padding: 2rem;
+  background:  #3fa9f5; /* Accent Blue Gradient */
+  overflow: hidden;
+}
+
+.cta-carousel {
+  display: flex;
+  gap: 1rem;
+  animation: scroll-carousel 20s linear infinite;
+}
+
+.cta-carousel img {
+  height: 300px;
+  border-radius: 1rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@keyframes scroll-carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.navbar-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-buttons a {
+  padding: 0.5rem 1.2rem;
+  background-color: var(--accent-blue); /* or your custom blue */
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-buttons a:hover {
+  background-color: #2b6cb0; /* darker blue on hover */
+}
+/* auth.css */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  font-family: 'Nunito', sans-serif;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-weight: 700;
+  font-size: 24px;
+  color: #333;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  background-color: #FF7043;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal-content button:hover {
+  background-color: #e95d31;
+}
+
+.modal-content p {
+  margin-top: 10px;
+  text-align: center;
+  color: #666;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+}
+
+#nav-user button {
+  padding: 10px 18px;
+  background-color: #FF7043;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#nav-user button:hover {
+  background-color: #e95d31;
+}
+
+.profile-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.profile-container {
+  padding: 30px;
+  font-family: 'Nunito', sans-serif;
+  max-width: 800px;
+  margin: auto;
+}
+
+.dog-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dog-card {
+  background-color: #fff7ec;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+/* Add these styles to your CSS file or add them inline in a style tag */
+
+/* Dog profile modal specific styles */
+.dog-profile-modal {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  max-width: 550px;
+  width: 90%;
+  margin: 30px auto;
+}
+
+.dog-registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dog-registration-form .form-group {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.dog-registration-form .animated-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  height: 65px;
+}
+
+.dog-registration-form .form-group.focused label {
+  transform: translateY(-24px) scale(0.85);
+  color: #5cb8ff;
+}
+
+.dog-registration-form label {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  color: #777;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.dog-profile-button {
+  background-color: #5cb8ff;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: center;
+  margin-top: 10px;
+}
+
+.dog-profile-button:hover {
+  background-color: #4ca8ef;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(92, 184, 255, 0.3);
+}
+
+/* Close button styling */
+.close-modal {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #999;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.close-modal:hover {
+  color: #333;
+  transform: scale(1.1);
+}
+
+/* Form response styling */
+.form-response {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: none;
+}
+
+.form-response.success {
+  background-color: #e7f7ed;
+  color: #28a745;
+  border-left: 4px solid #28a745;
+}
+
+.form-response.error {
+  background-color: #ffeaea;
+  color: #dc3545;
+  border-left: 4px solid #dc3545;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px 0;
+}
